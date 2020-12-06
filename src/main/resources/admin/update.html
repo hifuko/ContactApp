@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt erstellen</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+</head>
+<body>
+
+<!--responsive on mobile device: add 'stackable' in all grid-->
+
+<!--nav-->
+<nav th:replace="_fragments :: menuA(2)"></nav>
+
+
+
+<br>
+<br>
+
+
+<!--body-->
+<div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container-small">
+
+    <div class="ui container">
+
+        <br>
+        <form method="post" action="#" class="ui form" th:object="${person}" th:action="@{/admin/person/{id}(id=${person.id})}">
+
+
+            <div class="ui inverted segment m-padded-tb-big m-padded-tb-horizontal-large">
+
+                <h2 class="ui center aligned header">Kontakt aktualisieren</h2>
+                <br>
+                <div class="ui inverted form" >
+                    <div class="two required fields">
+                        <div class="field">
+                            <label>Vorname</label>
+                            <input placeholder="Vorname" name="vorname" id="vn" th:value="*{vorname}" th:text="${person.getVorname()}" pattern="[a-zA-Z]*" type="text">
+                        </div>
+                        <div class="field">
+                            <label>Nachname</label>
+                            <input name="nachname" id="nn" placeholder="Nachname" th:value="*{nachname}" pattern="[a-zA-Z]*" type="text">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>E-mail</label>
+                        <input type="email" name="mailadresse" id="mail" th:value="*{mailadresse}" placeholder="Mailadresse">
+                    </div>
+
+
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Telefonnummer</label>
+                            <input type="text" name="telefonnummer"  th:value="*{telefonnummer}" id="tn" placeholder="Telefonnummer" pattern="[0-9]*">
+                        </div>
+                        <div class="field">
+                            <label>Abteilung</label>
+                            <div class="ui search selection dropdown">
+                                <!---->
+                                <input type="hidden" name="abteilung.id" th:value="*{abteilung}!=null ? *{abteilung.id} : null">
+                                <i class="dropdown icon"></i>
+                                <div class="ui middle text">Abteilung</div>
+                                <div class="menu" style="position: center">
+                                    <div th:each="ab : ${session.abteilungList}" class="item" data-value="1" th:data-value="${ab.id}" th:text="${ab.name}"></div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="required field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" id="agree" name="agree"  class="hidden" >
+                            <label for="agree">Ich stimme den AGB zu.</label>
+                        </div>
+                    </div>
+
+
+
+                    <div class="ui right aligned container">
+                        <button type="button" class="ui button m-padded-tb-horizontal-small" onclick="window.history.go(-1)">back</button>
+                        <button type="submit" class="ui pink button">aktualisieren</button>
+
+                    </div>
+
+                    <br>
+                    <!--<div class="ui submit button">Submit</div>-->
+                </div>
+            </div>
+
+            <!--error message from js-->
+            <div class="ui error message"></div>
+
+
+
+        </form>
+
+
+
+
+
+        <br>
+        <br>
+
+
+
+    </div>
+</div>
+
+
+
+
+<!--footer-->
+<footer th:replace="_fragments :: footer"></footer>
+
+
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<!--/*/</th:block>/*/-->
+
+<script>
+    $('.menu.toggle').click(function (){
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('.ui.dropdown').dropdown();
+
+    $('.ui.form').form({
+        fields: {
+            vorname: {
+                identifier: 'vorname',
+                rules: [{
+                    type: 'empty',
+                    prompt: 'Vorname: darf nicht leer sein.'
+                }]
+            },
+            nachname: {
+                identifier: 'nachname',
+                rules: [{
+                    type: 'empty',
+                    prompt: 'Nachname: darf nicht leer sein.'
+                }]
+            },
+            agree: {
+                identifier: 'agree',
+                rules: [{
+                    type: 'checked',
+                    prompt: 'Sie müssen den Allgemeinen Geschäftsbedingungen zustimmen.'
+                }]
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
