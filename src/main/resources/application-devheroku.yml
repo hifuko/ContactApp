@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://ec2-54-157-66-140.compute-1.amazonaws.com:5432/d82975l0ajv7o?sslmode=require
+    username: gktfzifanvrerv
+    password: 65c95428b240a847c7f8f9d31f64320f38c282caa9f438d295421f38519d2f1f
+    #    url: ${JDBC_DATABASE_URL}
+    #    username: ${JDBC_DATABASE_USERNAME}
+    #    password: ${JDBC_DATABASE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+logging:
+  level:
+    root: info
+    com.ivana: debug
+  file:
+    path: log/blog-dev-heroku.log
+
+server:
+  port: 8081
