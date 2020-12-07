@@ -17,4 +17,7 @@ public interface PersonService {
 
     public Person getByMailadresse(String mailadresse);
 
+    public Person getById(Long id);
+
+
 }

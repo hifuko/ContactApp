@@ -9,4 +9,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     public Person getByMailadresse(String mailadresse);
 
+    public Person getById(Long id);
+
+
 }

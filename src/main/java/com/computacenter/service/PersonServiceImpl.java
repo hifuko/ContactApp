@@ -52,4 +52,10 @@ public class PersonServiceImpl implements PersonService{
     public Person getByMailadresse(String mailadresse) {
         return repository.getByMailadresse(mailadresse);
     }
+
+    @Override
+    public Person getById(Long id) {
+        return repository.getById(id);
+    }
+
 }

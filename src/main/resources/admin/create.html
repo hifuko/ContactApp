@@ -81,8 +81,8 @@
 
 
 
-                    <div class="ui right aligned container">
-                        <button type="button" class="ui button m-padded-tb-horizontal-small" onclick="window.history.go(-1)">back</button>
+                    <div class="ui right aligned container"><!--onclick="window.history.go(-1)"-->
+                        <a th:href="@{/admin/detail}"><button type="button" class="ui button m-padded-tb-horizontal-small">back</button></a>
                         <button type="submit" class="ui pink button">erstellen</button>
 
                     </div>

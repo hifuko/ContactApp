@@ -22,15 +22,22 @@
 
 
 <!--body-->
-<div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container-small">
+<div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container">
 
     <div class="ui container">
-        <!--notification-->
-        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
-            <i class="close icon"></i>
-            <div class="header">Benachrichtigung:</div>
-            <p th:text="${message}"></p>
+        <div class="m-container-tiny">
+            <!--notification-->
+            <div class="ui info message " th:unless="${#strings.isEmpty(message)}">
+                <i class="close icon"></i>
+                <i class="heart icon"></i>
+                <i class="heart icon"></i>
+                <i class="heart icon"></i>
+
+                <div class="header"><p th:text="${message}"></p></div>
+
+            </div>
         </div>
+
 
         <h2 class="ui center aligned header">Kontakte</h2>
 
@@ -40,11 +47,15 @@
             <thead>
             <tr>
                 <th></th>
+                <th></th>
+                <th></th>
                 <th>Vorname</th>
                 <th>Nachname</th>
                 <th>Mailadresse</th>
                 <th>Telefonnummer</th>
                 <th>Abteilung</th>
+                <th>Bearbeiten/Löschen</th>
+                <th></th>
                 <th></th>
 
             </tr>
@@ -52,6 +63,8 @@
             <tbody>
 
             <tr th:each="person,iterStat: ${page.content}">
+                <td></td>
+                <td></td>
                 <td th:text="${iterStat.count}">1</td>
                 <td th:text="${person.vorname}">Ivana</td>
                 <td th:text="${person.nachname}">Luo</td>
@@ -59,9 +72,11 @@
                 <td th:text="${person.telefonnummer}">1776553525</td>
                 <td th:text="${person.abteilung.name}">IT Abteilung</td>
                 <td>
-                    <a href="#" th:href="@{/admin/update/{id}(id=${person.id})}" class="ui pink mini button"><i class="edit icon"></i></a>
+                    <a href="#" th:href="@{/admin/update/{id}(id=${person.id})}" class="ui pink mini m-margin-tb-horizontal-small button"><i class="edit icon"></i></a>
                     <a href="#" th:href="@{/admin/delete/{id}(id=${person.id})}" class="ui black mini button "><i class="close icon"></i></a>
                 </td>
+                <td></td>
+                <td></td>
             </tr>
 
 
@@ -70,7 +85,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <th colspan="7">
+                <th colspan="11">
                     <div class="ui left floated tiny pagination menu"  th:if="${page.totalPages>1}">
                         <a onclick="page(this)" class="item"
                            th:href="@{/admin/detail(page=${page.number}-1)}"

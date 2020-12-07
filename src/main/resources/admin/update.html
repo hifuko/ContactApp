@@ -38,23 +38,23 @@
                     <div class="two required fields">
                         <div class="field">
                             <label>Vorname</label>
-                            <input placeholder="Vorname" name="vorname" id="vn" th:value="*{vorname}"  pattern="[a-zA-Z]*" type="text">
+                            <input placeholder="Vorname" name="vorname" id="vn" th:value="*{vorname}" th:unless="${person}==null" pattern="[a-zA-Z]*" type="text">
                         </div>
                         <div class="field">
                             <label>Nachname</label>
-                            <input name="nachname" id="nn" placeholder="Nachname" th:value="*{nachname}" pattern="[a-zA-Z]*" type="text">
+                            <input name="nachname" id="nn" placeholder="Nachname" th:value="*{nachname}"th:unless="${person}==null" pattern="[a-zA-Z]*" type="text">
                         </div>
                     </div>
-                    <div class="field">
+                    <div class="required field">
                         <label>E-mail</label>
-                        <input type="email" name="mailadresse" id="mail" th:value="*{mailadresse}" placeholder="Mailadresse">
+                        <input type="email" name="mailadresse" id="mail" th:value="*{mailadresse}"th:unless="${person}==null" placeholder="Mailadresse">
                     </div>
 
 
                     <div class="two fields">
                         <div class="field">
                             <label>Telefonnummer</label>
-                            <input type="text" name="telefonnummer"  th:value="*{telefonnummer}" id="tn" placeholder="Telefonnummer" pattern="[0-9]*">
+                            <input type="text" name="telefonnummer"  th:value="*{telefonnummer}" th:unless="${person}==null" id="tn" placeholder="Telefonnummer" pattern="[0-9]*">
                         </div>
                         <div class="field">
                             <label>Abteilung</label>
@@ -94,7 +94,11 @@
 
             <!--error message from js-->
             <div class="ui error message"></div>
-
+            <div class="ui negative message" th:if="${#fields.hasErrors('mailadresse')}">
+                <i class="close icon"></i>
+                <div class="header">Error</div>
+                <p th:errors="*{mailadresse}">Invalid input.</p>
+            </div>
 
 
         </form>
@@ -144,6 +148,13 @@
                     prompt: 'Nachname: darf nicht leer sein.'
                 }]
             },
+            mailadresse: {
+                identifier: 'mailadresse',
+                rules: [{
+                    type: 'empty',
+                    prompt: 'Mailadresse: darf nicht leer sein.'
+                }]
+            },
             agree: {
                 identifier: 'agree',
                 rules: [{
@@ -153,6 +164,13 @@
             }
         }
     });
+    //close notification
+    $('.message .close')
+        .on('click', function () {
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
 </script>
 
 </body>

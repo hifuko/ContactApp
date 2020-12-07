@@ -16,7 +16,7 @@ public class IndexController {
 
 
     @GetMapping("/")
-    public String list(@PageableDefault(size = 5, sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable,
+    public String list(@PageableDefault(size = 5, sort = {"vorname"}, direction = Sort.Direction.ASC) Pageable pageable,
                        Model model){
 
         model.addAttribute("page", service.listPersons(pageable));

@@ -25,6 +25,7 @@ public class ControllerExceptionHandler {
         //if we gave @ResponseStatus to the this type of exception, then we let it pass.
         // springboot will go to the right error page.
         /*if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null){
+
             throw e;
         }*/
 
@@ -32,11 +33,12 @@ public class ControllerExceptionHandler {
         //send data
         ModelAndView mv = new ModelAndView();
         mv.addObject("url", request.getRequestURL());
-        mv.addObject("exception", e);
+        mv.addObject("exception", e.getMessage());
 
         //go to
         mv.setViewName("error/error");
         return mv;
 
     }
+
 }

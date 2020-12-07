@@ -76,7 +76,7 @@ public class PersonController {
         if (p == null ) {
             attributes.addFlashAttribute("message", "Kontakt Aktualisieren ist fehlgeschalgen!");
         } else {
-            attributes.addFlashAttribute("message", "Kontakt erfolgreich aktualisiert!");
+            attributes.addFlashAttribute("message", "Kontakt erfolgreich eingefügt!");
         }
         return REDIRECT_DETAIL;
     }
@@ -84,11 +84,12 @@ public class PersonController {
 
     @GetMapping("/update/{id}")
     public String toUpdate(@PathVariable("id") Long id, Model model, HttpSession session){
-        Person p = personService.getPerson(id);
+        Person p = personService.getById(id);
         if (p == null){
-            throw new KontaktNotFoundException("Kontakt nicht gefunden!");
+            throw new KontaktNotFoundException("Kontakt mit id" + id + " nicht gefunden!");
 
         }
+
         model.addAttribute("person", p);
         session.setAttribute("abteilungList", abteilungService.listAbteilungen());
 
@@ -124,7 +125,7 @@ public class PersonController {
         if (p == null ) {
             attributes.addFlashAttribute("message", "Kontakt Einfügen ist fehlgeschalgen!");
         } else {
-            attributes.addFlashAttribute("message", "Kontakt erfolgreich eingefügt!");
+            attributes.addFlashAttribute("message", "Kontakt erfolgreich aktualisiert!");
         }
         return REDIRECT_DETAIL;
 
@@ -133,12 +134,11 @@ public class PersonController {
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id, RedirectAttributes attributes){
-        Person p = personService.getPerson(id);
+        Person p = personService.getById(id);
         if (p == null){
-            String s = "Kontakt nicht gefunden!";
-            attributes.addFlashAttribute("exception", s);
-            throw new KontaktNotFoundException(s);
+            throw new KontaktNotFoundException("Kontakt mit id" + id + " nicht gefunden!");
         }
+
         personService.deletePerson(id);
         attributes.addFlashAttribute("message", "Kontakt erfolgreich gelöscht!");
         return REDIRECT_DETAIL;

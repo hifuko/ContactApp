@@ -3,44 +3,28 @@
 <head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>error</title>
+    <title>500 error</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../../static/css/me.css">
 </head>
 <body>
 
-<nav th:replace="_fragments :: menuE">
+<nav th:replace="_fragments :: menuE"></nav>
 
-</nav>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<div class="m-container-small m-padded-tb-massive">
-    <div class="ui error message">
+<div class="m-container-small m-padded-tb-big">
+    <div class="ui m-text-spaced error message">
         <div class="ui container">
-            <h2>404</h2>
-            <h3>sorry...es wird nicht gefunden</h3>
+            <h1 class="ui centered m-margin-tb-tiny header">404</h1>
+            <h3 class="ui centered m-margin-tb-tiny header">Oops...</h3>
+            <div class="ui centered m-margin-tb-tiny header" th:text="${exception}"></div>
+            <br>
+
+            <img src="../../static/images/exc.jpg" th:src="@{/images/exc.jpg}" class="ui m-margin-top rounded image">
+
         </div>
     </div>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 
 
 
