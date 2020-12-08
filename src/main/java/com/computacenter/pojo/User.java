@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @NoArgsConstructor
@@ -17,6 +19,8 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
+    @NotBlank
     private String username;
+    @NotBlank
     private String password;
 }

@@ -16,12 +16,21 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/admin")
 public class LoginController {
 
+    private static final String LOGIN = "../admin/login";
+    private static final String REDIRECT_DETAIL = "redirect:/admin/detail";
+    private static final String REDIRECT_ADMIN = "redirect:/admin";
+    private static final String REDIRECT_ = "redirect:/";
+    private static final String DETAIL = "../admin/detail";
+
     @Autowired
     UserService service;
 
     @GetMapping
-    public String toLogin(){
-        return "../admin/login";
+    public String toLogin(HttpSession session){
+        if (session.getAttribute("user") != null){
+            return REDIRECT_DETAIL;
+        }
+        return LOGIN;
     }
 
     @GetMapping("/login")
@@ -40,14 +49,14 @@ public class LoginController {
         if (user != null){
             user.setPassword(null); //don't store password, not safe
             session.setAttribute("user", user);
-            return "redirect:/admin/detail";
+            return REDIRECT_DETAIL;
         } else {
             //addFlashAttribute:
             //1. can pass any data type(not only primitive types or string)
             //2. after it is fetched, it will be cleared, suitable for feedback message of form
             attributes.addFlashAttribute("message", "Username oder Password falsch.");
             //here we can not use Model, cuz it can't send data when we use redirect
-            return "redirect:/admin";
+            return REDIRECT_ADMIN;
         }
 
     }
@@ -57,8 +66,11 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout(HttpSession session){
         session.removeAttribute("user");
-        return "redirect:/";
+        return REDIRECT_;
     }
+
+
+
 
 
 

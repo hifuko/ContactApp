@@ -11,59 +11,19 @@
 
 
 
-<!--nav for normal pages-->
-<nav th:fragment="menu" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
-    <div class="ui container ">
-        <div class="ui secondary inverted stackable menu">
-            <h2 class="ui pink header item">Computacenter</h2>
-            <a href="#" th:href="@{/}" class="active m-item item m-mobile-hide" ><i class="address book icon"></i>Kontakte</a>
-            <a href="#" th:href="@{/admin/detail}" class=" m-item item m-mobile-hide"><i class="address info icon"></i>Details</a>
-
-
-
-            <div class="m-item item m-mobile-hide right menu">
-                <a href="#" th:href="@{/admin}" class="m-item item m-mobile-hide"><i class="user icon"></i>Login</a>
-
-            </div>
-        </div>
-    </div>
-    <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
-        <i class="sidebar icon"></i>
-    </a>
-</nav>
-
-<!--nav for error pages-->
-<nav th:fragment="menuE" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
-    <div class="ui container">
-        <div class="ui secondary inverted stackable menu">
-            <h2 class="ui pink header item">Computacenter</h2>
-            <a href="#" th:href="@{/}" class="m-item item m-mobile-hide"><i class="address book icon"></i>Kontakte</a>
-            <a href="#" th:href="@{/admin/detail}" class=" m-item item m-mobile-hide"><i class="address info icon"></i>Details</a>
-
-
-
-            <div class="m-item item m-mobile-hide right menu">
-                <a href="#" th:href="@{/admin}" class="m-item item m-mobile-hide"><i class="user icon"></i></a>
-
-            </div>
-        </div>
-    </div>
-    <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
-        <i class="sidebar icon"></i>
-    </a>
-</nav>
-
-
-<!--nav for admin pages-->
 <!--num: index of the active part-->
 <nav th:fragment="menuA(num)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
     <div class="ui container">
         <div class="ui secondary inverted stackable menu">
             <h2 class="ui pink header item">Computacenter</h2>
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${num==1} ? 'active'"><i class="address book icon"></i>Kontakte</a>
+            <a href="#" class="m-item item m-mobile-hide" th:href="@{/}" th:classappend="${num==1} ? 'active'"><i class="address book icon"></i>Kontakte</a>
             <a href="#" class=" m-item item m-mobile-hide" th:href="@{/admin/detail}" th:classappend="${num==2} ? 'active'"><i class="address info icon"></i>Details</a>
 
-            <div class="m-item item m-mobile-hide right menu">
+            <div class="m-item item m-mobile-hide right menu" th:if="${session.user}==null">
+                <a href="#" th:href="@{/admin}" class="m-item item m-mobile-hide"><i class="user icon"></i>Login</a>
+            </div>
+
+            <div class="m-item item m-mobile-hide right menu" th:unless="${session.user}==null">
                 <div class="ui dropdown item">
                     <img src="../static/images/avatar1.jpeg" th:src="@{/images/avatar1.jpeg}" class="ui avatar image" width="50">
                     <div class="text" th:text="${session.user.getUsername()}">
@@ -75,9 +35,9 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-    <!---->
     <a href="#" class="ui menu toggle black icon button m-top-right m-mobile-show">
         <i class="sidebar icon"></i>
     </a>

@@ -61,7 +61,7 @@ public class PersonController {
         Person oldPerson = personService.getByMailadresse(person.getMailadresse());
         if (oldPerson != null){
             System.out.println("Person already exists");
-            result.rejectValue("mailadresse", "mailadresseError", "Kontakt (mailadresse) existiert schon.");
+            result.rejectValue("mailadresse", "mailadresseError", "Kontakt (Mailadresse) existiert schon.");
             return CREATE;
         }
 
@@ -86,7 +86,7 @@ public class PersonController {
     public String toUpdate(@PathVariable("id") Long id, Model model, HttpSession session){
         Person p = personService.getById(id);
         if (p == null){
-            throw new KontaktNotFoundException("Kontakt mit id" + id + " nicht gefunden!");
+            throw new KontaktNotFoundException("Kontakt  mit  id  " + id + "  nicht  gefunden!");
 
         }
 
@@ -98,7 +98,7 @@ public class PersonController {
 
 
     @PostMapping("/person/{id}")
-    public String update(@Valid Person person, @PathVariable("id") Long id, BindingResult result, RedirectAttributes attributes){
+    public String update(@Valid Person person, BindingResult result, RedirectAttributes attributes, @PathVariable("id") Long id){
 
         if (result.hasErrors()){
             return UPDATE;
@@ -108,7 +108,7 @@ public class PersonController {
         Person oldPerson = personService.getByMailadresse(person.getMailadresse());
         if (oldPerson != null && !oldPerson.getId().equals(id)){
             System.out.println("Person already exists");
-            result.rejectValue("mailadresse", "mailadresseError", "Kontakt (mailadresse) existiert schon.");
+            result.rejectValue("mailadresse", "mailadresseError", "Kontakt (Mailadresse) existiert schon.");
             return UPDATE;
 
         }

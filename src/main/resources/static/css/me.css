@@ -1,7 +1,10 @@
 body{
     background: url("../images/bg4.jpg");
 
-    zoom:130% !important
+    zoom:130% !important;
+    /*
+    font-family: Serif !important;
+    */
 
 
 }
@@ -207,3 +210,20 @@ body{
     position: fixed !important;
 }
 
+
+/*----------------font------------------*/
+
+.m-font-large{
+
+    font-size: 3em !important;
+}
+
+.m-font-big{
+
+    font-size: 2.5em !important;
+}
+
+.m-font-medium{
+
+    font-size: 1.5em !important;
+}

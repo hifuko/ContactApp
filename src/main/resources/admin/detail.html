@@ -17,8 +17,7 @@
 
 
 
-<br>
-<br>
+
 
 
 <!--body-->
@@ -27,7 +26,7 @@
     <div class="ui container">
         <div class="m-container-tiny">
             <!--notification-->
-            <div class="ui info message " th:unless="${#strings.isEmpty(message)}">
+            <div class="ui info message m-margin-tb-medium" th:unless="${#strings.isEmpty(message)}">
                 <i class="close icon"></i>
                 <i class="heart icon"></i>
                 <i class="heart icon"></i>
@@ -38,8 +37,12 @@
             </div>
         </div>
 
-
-        <h2 class="ui center aligned header">Kontakte</h2>
+        <h3 class="ui center aligned icon header">
+            <i class="circular users icon"></i>
+        </h3>
+        <h1 class="ui center aligned header m-font-large">
+            Kontakte
+        </h1>
 
 
         <br>

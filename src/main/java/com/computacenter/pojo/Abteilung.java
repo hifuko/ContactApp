@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Abteilung {
     @GeneratedValue
     private Long id;
 
-    @NotEmpty(message = "Vorname darf nicht leer sein.")
+    @NotBlank
     private String name;
 
     private String beschreibung;

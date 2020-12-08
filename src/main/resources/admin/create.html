@@ -38,11 +38,11 @@
                     <div class="two required fields">
                         <div class="field">
                             <label>Vorname</label>
-                            <input placeholder="Vorname" name="vorname" id="vn" th:value="*{vorname}" pattern="[a-zA-Z]*" type="text">
+                            <input placeholder="Vorname" name="vorname" id="vn" th:value="*{vorname}" pattern="[a-zA-Z\u00C0-\u017F]*" type="text">
                         </div>
                         <div class="field">
                             <label>Nachname</label>
-                            <input name="nachname" id="nn" placeholder="Nachname" th:value="*{nachname}" pattern="[a-zA-Z]*" type="text">
+                            <input name="nachname" id="nn" placeholder="Nachname" th:value="*{nachname}" pattern="[a-zA-Z\u00C0-\u017F]*" type="text">
                         </div>
                     </div>
                     <div class="required field">
@@ -52,7 +52,7 @@
 
 
                     <div class="two fields">
-                        <div class="field">
+                        <div class="required field">
                             <label>Telefonnummer</label>
                             <input type="text" name="telefonnummer"  th:value="*{telefonnummer}" id="tn" placeholder="Telefonnummer" pattern="[0-9]*">
                         </div>
@@ -88,17 +88,32 @@
                     </div>
 
                     <br>
-                    <!--<div class="ui submit button">Submit</div>-->
                 </div>
             </div>
 
-            <!--error message from js-->
+            <!--error message from js (front end)-->
             <div class="ui error message"></div>
 
+            <!--show error message from the back end validation-->
+            <div class="ui negative message" th:if="${#fields.hasErrors('vorname')}">
+                <i class="close icon"></i>
+                <div class="header">Error</div>
+                <p th:errors="*{vorname}">Invalid input.</p>
+            </div>
+            <div class="ui negative message" th:if="${#fields.hasErrors('nachname')}">
+                <i class="close icon"></i>
+                <div class="header">Error</div>
+                <p th:errors="*{nachname}">Invalid input.</p>
+            </div>
             <div class="ui negative message" th:if="${#fields.hasErrors('mailadresse')}">
                 <i class="close icon"></i>
                 <div class="header">Error</div>
                 <p th:errors="*{mailadresse}">Invalid input.</p>
+            </div>
+            <div class="ui negative message" th:if="${#fields.hasErrors('telefonnummer')}">
+                <i class="close icon"></i>
+                <div class="header">Error</div>
+                <p th:errors="*{telefonnummer}">Invalid input.</p>
             </div>
 
 
@@ -134,24 +149,26 @@
 
     $('.ui.dropdown').dropdown();
 
+    //disable vorname, nachname, mailadresse front end validation on purpose,
+    // so backend validation message can show
     $('.ui.form').form({
         fields: {
             vorname: {
-                identifier: 'vorname',
+                identifier: 'vorname11111',
                 rules: [{
                     type: 'empty',
                     prompt: 'Vorname: darf nicht leer sein.'
                 }]
             },
             nachname: {
-                identifier: 'nachname',
+                identifier: 'nachname11111111',
                 rules: [{
                     type: 'empty',
                     prompt: 'Nachname: darf nicht leer sein.'
                 }]
             },
             mailadresse: {
-                identifier: 'mailadresse',
+                identifier: 'mailadresse1111111',
                 rules: [{
                     type: 'empty',
                     prompt: 'Mailadresse: darf nicht leer sein.'

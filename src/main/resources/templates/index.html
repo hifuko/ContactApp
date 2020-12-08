@@ -13,24 +13,27 @@
 <!--responsive on mobile device: add 'stackable' in all grid-->
 
 <!--nav-->
-<nav th:replace="_fragments :: menu"></nav>
+<nav th:replace="_fragments :: menuA(1)"></nav>
 
 
-
-<br>
 <br>
 <br>
 
 
 <!--body-->
-<div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container-tiny">
+<div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container-small">
 
     <div class="ui container">
-        <h2 class="ui center aligned header">Kontakte</h2>
+        <h3 class="ui center aligned icon header">
+            <i class="circular users icon"></i>
+        </h3>
+        <h1 class="ui center aligned header m-font-big">
+            Übersicht
+        </h1>
 
 
         <br>
-        <table class="ui compact center aligned striped pink table">
+        <table class="ui compact center aligned striped pink table m-font-medium" >
             <thead>
             <tr>
                 <th></th>
