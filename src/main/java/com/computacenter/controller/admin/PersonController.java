@@ -4,6 +4,7 @@ import com.computacenter.exception.KontaktNotFoundException;
 import com.computacenter.pojo.Person;
 import com.computacenter.service.AbteilungService;
 import com.computacenter.service.PersonService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -34,6 +35,8 @@ public class PersonController {
     private AbteilungService abteilungService;
 
     @GetMapping("/detail")
+    @ApiOperation("Sort all contacts by first name, and list them by page. " +
+            "Store the result in model and then go to detail to render them.")
     public String list(@PageableDefault(size = 5, sort = {"vorname"}, direction = Sort.Direction.ASC) Pageable pageable,
                        Model model){
 
@@ -42,6 +45,7 @@ public class PersonController {
     }
 
     @GetMapping("/create")
+    @ApiOperation("store the list of department in session for rendering and go to create page.")
     public String toCreate(Model model, HttpSession session){
 
         session.setAttribute("abteilungList", abteilungService.listAbteilungen());
@@ -52,6 +56,8 @@ public class PersonController {
 
 
     @PostMapping("/detail")
+    @ApiOperation("If user input of creating a new contact is valid, and email address is not taken yet, " +
+            "then add the contact to database and go to detail page.")
     public String post(@Valid Person person, BindingResult result, RedirectAttributes attributes) {
 
         if (result.hasErrors()){
@@ -83,6 +89,7 @@ public class PersonController {
 
 
     @GetMapping("/update/{id}")
+    @ApiOperation("If id exists, then find the right contact info and go to update page.")
     public String toUpdate(@PathVariable("id") Long id, Model model, HttpSession session){
         Person p = personService.getById(id);
         if (p == null){
@@ -98,6 +105,8 @@ public class PersonController {
 
 
     @PostMapping("/person/{id}")
+    @ApiOperation("If the user input is valid, then update the contact info and redirect to detail page." +
+            "Otherwise go to error page")
     public String update(@Valid Person person, BindingResult result, RedirectAttributes attributes, @PathVariable("id") Long id){
 
         if (result.hasErrors()){
@@ -133,10 +142,11 @@ public class PersonController {
 
 
     @GetMapping("/delete/{id}")
+    @ApiOperation("If id exists, then delete the contact. Otherwise go to error page.")
     public String delete(@PathVariable("id") Long id, RedirectAttributes attributes){
         Person p = personService.getById(id);
         if (p == null){
-            throw new KontaktNotFoundException("Kontakt mit id" + id + " nicht gefunden!");
+            throw new KontaktNotFoundException("Kontakt  mit  id  " + id + "  nicht  gefunden!");
         }
 
         personService.deletePerson(id);

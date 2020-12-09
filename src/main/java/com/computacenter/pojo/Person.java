@@ -1,5 +1,6 @@
 package com.computacenter.pojo;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ import javax.validation.constraints.Pattern;
 @ToString
 @Entity
 @Table(name = "t_person")
+@ApiModel("Person entity class")
 public class Person {
     @Id
     @GeneratedValue

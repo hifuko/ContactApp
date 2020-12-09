@@ -2,8 +2,10 @@ package com.computacenter.controller.admin;
 
 import com.computacenter.pojo.User;
 import com.computacenter.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +28,7 @@ public class LoginController {
     UserService service;
 
     @GetMapping
+    @ApiOperation("If session does not have user info, then go to login page.") //comment
     public String toLogin(HttpSession session){
         if (session.getAttribute("user") != null){
             return REDIRECT_DETAIL;
@@ -34,6 +37,7 @@ public class LoginController {
     }
 
     @GetMapping("/login")
+    @ApiOperation("Redirect to /admin to avoid 405 error") //comment
     public String toLogin2(){
         return "redirect:/admin";
     }
@@ -41,10 +45,15 @@ public class LoginController {
 
 
     @PostMapping("/login") //@RequestParam: param here matches the param we get from user input
+    @ApiOperation("If username and password are valid, store it in session and go to detail page. Otherwise redirect to /admin.") //comment
     public String login(@RequestParam String username,
                         @RequestParam String password,
                         HttpSession session,
                         RedirectAttributes attributes){
+        if (username.isBlank() || password.isBlank()){
+            attributes.addFlashAttribute("message", "Username oder Password leer.");
+            return REDIRECT_ADMIN;
+        }
         User user = service.checkUser(username, password);
         if (user != null){
             user.setPassword(null); //don't store password, not safe
@@ -64,6 +73,7 @@ public class LoginController {
 
 
     @GetMapping("/logout")
+    @ApiOperation("Log out, remove user info in session and go to index page.")
     public String logout(HttpSession session){
         session.removeAttribute("user");
         return REDIRECT_;
