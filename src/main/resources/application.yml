@@ -2,6 +2,6 @@
 
 spring:
   profiles:
-    active: devlocal
+    active: devheroku
   thymeleaf:
     cache: false
