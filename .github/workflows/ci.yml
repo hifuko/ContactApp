@@ -30,7 +30,7 @@ jobs:
           justlogin: true
   
       - name: Deploy to Heroku
-      - run: |
+        run: |
           heroku auth:whoami
           heroku git:remote -a contact-app-weijia
           git fetch --all
