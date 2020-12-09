@@ -27,8 +27,14 @@ jobs:
           heroku_app_name: "contact-app-weijia" #Must be unique in Heroku
           heroku_email: "ivanaluo1994@gmail.com"
           branch: "deployOnHeroku"
-          healthcheck: "https://contact-app-weijia.herokuapp.com/health"
-          checkstring: "ok"
-          rollbackonhealthcheckfailed: true
+          justlogin: true
+ 
+      - run: |
+          heroku auth:whoami
+          git push heroku deployOnHeroku:master
+
+          
+
+
 
 
