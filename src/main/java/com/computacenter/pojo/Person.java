@@ -26,15 +26,16 @@ public class Person {
 
     @NotBlank(message = "Vorname darf nicht leer sein!")
     @Length(max = 15, message = "Vorname ist zu lang!")
-    @Pattern(regexp = "[a-zA-Z\\u00C0-\\u017F]*")
+    @Pattern(regexp = "[a-zA-Z\\u00C0-\\u017F]*", message = "Vorname nicht korrekt!")
     private String vorname;
 
     @NotBlank(message = "Nachname darf nicht leer sein!")
     @Length(max = 15, message = "Nachname ist zu lang!")
-    @Pattern(regexp = "[a-zA-Z\\u00C0-\\u017F]*")
+    @Pattern(regexp = "[a-zA-Z\\u00C0-\\u017F]*", message = "Nachname nicht korrekt!")
     private String nachname;
 
     @Email(message = "Mailadresse nicht korrekt!")
+    @Pattern(regexp = "[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z0-9]{2,6}", message = "Mailadresse nicht korrekt!")
     @NotBlank(message = "Mailadresse darf nicht leer sein!")
     private String mailadresse;
 
