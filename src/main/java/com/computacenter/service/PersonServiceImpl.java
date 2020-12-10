@@ -35,6 +35,16 @@ public class PersonServiceImpl implements PersonService{
     }
 
     @Override
+    public Page<Person> listPersons(String query, Pageable pageable) {
+        return repository.findByQeury("%"+query+"%", pageable);
+    }
+
+    @Override
+    public Page<Person> listPersons(Long ab_id, Pageable pageable) {
+        return repository.findByAbteilung_Id(ab_id, pageable);
+    }
+
+    @Override
     @Transactional
     public Person updatePerson(Person person) {
         return repository.save(person);

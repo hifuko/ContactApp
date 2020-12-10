@@ -32,7 +32,7 @@
             Übersicht
         </h1>
 
-        <div th:text="${page.getTotalElements()} + '  Kontakte'" class="ui right aligned header m-padded-tb-horizontal-small">5 Kontakte</div>
+        <div th:text="${page.getTotalElements()} + '  Kontakt(e)'" class="ui right aligned header m-padded-tb-horizontal-small">5 Kontakte</div>
 
         <table class="ui compact center aligned striped pink table" >
             <thead>
@@ -57,7 +57,7 @@
                 <th colspan="3">
                     <div class="ui middle aligned three column grid" th:if="${page.totalPages}>1">
                         <div class="left aligned column">
-                            <a href="#" th:href="@{/(page=${page.number}-1)}"  th:unless="${page.first}" class="ui mini pink button">vorherige</a>
+                            <a href="#" th:href="@{/(page=${page.number}-1)}"  th:unless="${page.first}" class="ui  pink button">vorherige</a>
                         </div>
 
                         <div class="center aligned column">
@@ -65,7 +65,7 @@
                         </div>
 
                         <div class="right aligned column">
-                            <a href="#" th:href="@{/(page=${page.number}+1)}"  th:unless="${page.last}" class="ui mini black button m-padded-tb-horizontal-small">nächste</a>
+                            <a href="#" th:href="@{/(page=${page.number}+1)}"  th:unless="${page.last}" class="ui  black button m-padded-tb-horizontal-small">nächste</a>
                         </div>
                     </div>
 

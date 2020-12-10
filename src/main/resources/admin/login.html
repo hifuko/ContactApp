@@ -18,7 +18,7 @@
                 <h2 class="ui image header">
                     <img src="../static/images/paw.png" th:src="@{/images/paw.png}" class="image animate__bounceIn">
                     <div class="content">
-                        Log-in to your account
+                        Login
                     </div>
                 </h2>
                 <!--/../admin/login -> GetMapping("/admin/login")-->
@@ -67,14 +67,14 @@
                 identifier: 'username',
                 rules: [{
                     type: 'empty',
-                    prompt: 'Username:  cannot be empty.'
+                    prompt: 'Username:  darf nicht leer sein.'
                 }]
             },
             password: {
                 identifier: 'password',
                 rules: [{
                     type: 'empty',
-                    prompt: 'Password:  cannot be empty.'
+                    prompt: 'Password:  darf nicht leer sein.'
                 }]
             }
         }

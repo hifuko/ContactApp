@@ -4,7 +4,7 @@
 <head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail</title>
+    <title>Suchergebnisse</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
 </head>
@@ -24,32 +24,17 @@
 <div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container">
 
     <div class="ui container">
-        <div class="m-container-tiny">
-            <!--notification-->
-            <div class="ui info message m-margin-tb-medium" th:unless="${#strings.isEmpty(message)}">
-                <i class="close icon"></i>
-                <i class="heart icon"></i>
-                <i class="heart icon"></i>
-                <i class="heart icon"></i>
-
-                <div class="header"><p th:text="${message}"></p></div>
-
-            </div>
-        </div>
 
         <h3 class="ui center aligned icon header">
-            <i class="circular users icon"></i>
+            <i class="circular search icon"></i>
         </h3>
-        <h1 class="ui center aligned header m-font-medium">
-            Kontakte
-        </h1>
+        <h1 class="ui left aligned header m-font-medium" th:text="'Suchergebnisse für ' + ${query} + ':'" th:if="${query}!=null"></h1>
+        <h1 class="ui left aligned header m-font-medium" th:text="'Suchergebnisse für ' + ${page.getContent().get(0).abteilung.name} + ':'" th:if="${query}==null"></h1>
 
-        <a href="#" th:href="@{/admin/create}" class="ui right floated m-padded-tb-horizontal-small pink button">erstellen</a>
+        <div th:text="${page.getTotalElements()} + '  Kontakt(e)'" class="ui header">5 Kontakte</div>
 
 
-        <div th:text="${page.getTotalElements()} + '  Kontakt(e)'" class="ui left aligned header m-padded-tb-horizontal-small">5 Kontakte</div>
-
-        <table class="ui compact center aligned striped pink table ">
+        <table class="ui compact center aligned striped pink table m-margin-t-medium">
             <thead>
             <tr>
                 <th></th>
@@ -76,11 +61,7 @@
                 <td th:text="${person.nachname}">Luo</td>
                 <td th:text="${person.mailadresse}">ivanaluo1994@gmail.com</td>
                 <td th:text="${person.telefonnummer}">1776553525</td>
-                <td >
-                    <a href="#" th:href="@{/admin/search/{ab_id}(ab_id=${person.abteilung.id})}">
-                        <div th:text="${person.abteilung.name}"></div>
-                    </a>
-                </td>
+                <td th:text="${person.abteilung.name}">IT Abteilung</td>
                 <td>
                     <a href="#" th:href="@{/admin/update/{id}(id=${person.id})}" class="ui pink mini m-margin-tb-horizontal-small button"><i class="edit icon"></i></a>
                     <a href="#" th:href="@{/admin/delete/{id}(id=${person.id})}" class="ui black mini button "><i class="close icon"></i></a>
@@ -98,7 +79,7 @@
                 <th colspan="11" th:if="${page.totalPages}>1">
                     <div class="ui middle aligned three column grid" >
                         <div class="left aligned column">
-                            <a href="#" th:href="@{/admin/detail(page=${page.number}-1)}"  th:unless="${page.first}" class="ui pink button">vorherige</a>
+                            <a href="#" th:href="@{/admin/detail(page=${page.number}-1)}"  th:unless="${page.first}" class="ui tiny pink button">vorherige</a>
                         </div>
 
                         <div class="center aligned column">
@@ -106,22 +87,18 @@
                         </div>
 
                         <div class="right aligned column">
-                            <a href="#" th:href="@{/admin/detail(page=${page.number}+1)}"  th:unless="${page.last}" class="ui black button m-padded-tb-horizontal-small">nächste</a>
+                            <a href="#" th:href="@{/admin/detail(page=${page.number}+1)}"  th:unless="${page.last}" class="ui tiny black button m-padded-tb-horizontal-small">nächste</a>
                         </div>
                     </div>
                 </th>
 
             </tr>
-            <!--<tr>
-                <th colspan="11">
-                    <div class="ui middle aligned column" th:if="${page.totalPages}>1">
-                        <a href="#" th:href="@{/admin/create}" class="ui right floated m-padded-tb-horizontal-small pink button">erstellen</a>
-                    </div>
-
-                </th>
-            </tr>-->
             </tfoot>
         </table>
+
+        <a href="#" th:href="@{/admin/detail}" class="ui right floated m-padded-tb-horizontal-small black button">zurück</a>
+
+
 
 
 

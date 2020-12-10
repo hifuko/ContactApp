@@ -11,6 +11,11 @@ public interface PersonService {
 
     Page<Person> listPersons(Pageable pageable);
 
+    Page<Person> listPersons(String query, Pageable pageable);
+
+    Page<Person> listPersons(Long ab_id, Pageable pageable);
+
+
     Person updatePerson(Person person);
 
     void deletePerson(Long id);

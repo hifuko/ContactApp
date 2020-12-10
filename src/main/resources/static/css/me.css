@@ -1,11 +1,18 @@
 body{
     background: url("../images/bg4.jpg");
+    zoom:120% !important;
+}
 
-    zoom:130% !important;
-    /*
-    font-family: Serif !important;
-    */
+tr:hover{
+    background-color: rgb(250, 233, 240);
+}
 
+a{
+    color: #f64ca1;
+}
+
+a:hover{
+    color: black;
 
 }
 
@@ -92,6 +99,11 @@ body{
     margin-top: 3em !important;
     margin-bottom: 3em !important;
 }
+
+m-margin-t-medium{
+    margin-top: 2em !important;
+}
+
 .m-margin-t-big{
     margin-top: 8em !important;
 }
