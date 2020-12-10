@@ -45,8 +45,9 @@
         </h1>
 
 
-        <br>
-        <table class="ui compact center aligned striped pink table">
+        <div th:text="${page.getTotalElements()} + '  Kontakte'" class="ui right aligned header m-padded-tb-horizontal-small">5 Kontakte</div>
+
+        <table class="ui compact center aligned striped pink table ">
             <thead>
             <tr>
                 <th></th>
@@ -89,31 +90,34 @@
             <tfoot>
             <tr>
                 <th colspan="11">
-                    <div class="ui left floated tiny pagination menu"  th:if="${page.totalPages>1}">
-                        <a onclick="page(this)" class="item"
-                           th:href="@{/admin/detail(page=${page.number}-1)}"
-                           th:unless="${page.first}">
-                            vorherige
-                        </a>
+                    <div class="ui middle aligned three column grid" th:if="${page.totalPages}>1">
+                        <div class="left aligned column">
+                            <a href="#" th:href="@{/admin/detail(page=${page.number}-1)}"  th:unless="${page.first}" class="ui tiny pink button">vorherige</a>
+                        </div>
 
-                        <a onclick="page(this)" class="item m-padded-tb-horizontal-small"
-                           th:href="@{/admin/detail(page=${page.number}+1)}"
-                           th:unless="${page.last}">
-                            nächste
-                        </a>
+                        <div class="center aligned column">
+                            <div th:text="${page.number+1} + '/' + ${page.getTotalPages()}">1/1</div>
+                        </div>
+
+                        <div class="right aligned column">
+                            <a href="#" th:href="@{/admin/detail(page=${page.number}+1)}"  th:unless="${page.last}" class="ui tiny black button m-padded-tb-horizontal-small">nächste</a>
+                        </div>
                     </div>
-                    <a href="#" th:href="@{/admin/create}" class="ui right floated tiny pink button">erstellen</a>
+                </th>
+
+            </tr>
+            <tr>
+                <th colspan="11">
+                    <div class="ui middle aligned column" th:if="${page.totalPages}>1">
+                        <a href="#" th:href="@{/admin/create}" class="ui right floated tiny pink button">erstellen</a>
+                    </div>
 
                 </th>
             </tr>
             </tfoot>
         </table>
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+
 
     </div>
 </div>

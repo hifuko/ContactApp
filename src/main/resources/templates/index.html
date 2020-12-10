@@ -20,8 +20,9 @@
 <br>
 
 
+
 <!--body-->
-<div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container-small">
+<div id="waypoint" class="m-padded-tb-medium m-margin-tb-horizontal-big m-container-small">
 
     <div class="ui container">
         <h3 class="ui center aligned icon header">
@@ -31,8 +32,8 @@
             Übersicht
         </h1>
 
+        <div th:text="${page.getTotalElements()} + '  Kontakte'" class="ui right aligned header m-padded-tb-horizontal-small">5 Kontakte</div>
 
-        <br>
         <table class="ui compact center aligned striped pink table" >
             <thead>
             <tr>
@@ -54,33 +55,25 @@
             <tr>
             <tr>
                 <th colspan="3">
+                    <div class="ui middle aligned three column grid" th:if="${page.totalPages}>1">
+                        <div class="left aligned column">
+                            <a href="#" th:href="@{/(page=${page.number}-1)}"  th:unless="${page.first}" class="ui mini pink button">vorherige</a>
+                        </div>
 
-                    <div class="ui pagination menu"  th:if="${page.totalPages>1}">
-                        <a onclick="page(this)" class="item"
-                           th:href="@{/(page=${page.number}-1)}"
-                           th:unless="${page.first}">
-                            vorherige
-                        </a>
+                        <div class="center aligned column">
+                            <div th:text="${page.number+1} + '/' + ${page.getTotalPages()}">1/1</div>
+                        </div>
 
-                        <a onclick="page(this)" class="item m-padded-tb-horizontal-small"
-                           th:href="@{/(page=${page.number}+1)}"
-                           th:unless="${page.last}">
-                            nächste
-                        </a>
+                        <div class="right aligned column">
+                            <a href="#" th:href="@{/(page=${page.number}+1)}"  th:unless="${page.last}" class="ui mini black button m-padded-tb-horizontal-small">nächste</a>
+                        </div>
                     </div>
+
                 </th>
             </tr>
             </tr>
             </tfoot>
         </table>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
-
 
     </div>
 </div>

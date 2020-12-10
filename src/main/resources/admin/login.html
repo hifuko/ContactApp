@@ -22,7 +22,7 @@
                     </div>
                 </h2>
                 <!--/../admin/login -> GetMapping("/admin/login")-->
-                <form class="ui large form m-padded-tb-small" method="post" action="#" th:action="@{/admin/login}">
+                <form class="ui large form m-padded-tb-small m-margin-b-large" method="post" action="#" th:action="@{/admin/login}">
                     <div class="ui stacked pink segment m-padded-tb-big">
                         <div class="field m-padded-tb-horizontal-big" >
                             <br>
@@ -53,6 +53,9 @@
     </div>
 </div>
 
+
+<!--footer-->
+<footer th:replace="_fragments :: footer"></footer>
 
 <!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <!--/*/</th:block>/*/-->

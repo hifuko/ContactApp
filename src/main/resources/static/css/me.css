@@ -92,6 +92,17 @@ body{
     margin-top: 3em !important;
     margin-bottom: 3em !important;
 }
+.m-margin-t-big{
+    margin-top: 8em !important;
+}
+
+.m-margin-t-large{
+    margin-top: 10em !important;
+}
+
+.m-margin-b-large{
+    margin-bottom: 5em !important;
+}
 
 .m-margin-tb-horizontal-small{
     margin-left: 1em !important;
