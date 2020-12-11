@@ -18,6 +18,7 @@ import java.util.ArrayList;
 @EnableSwagger2
 public class SwaggerConfig {
 
+    //Environment contains key-values in all .properties
     @Bean
     public Docket docket(Environment environment){
 

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.NoSuchElementException;
 
 
 @Controller
@@ -93,7 +94,8 @@ public class PersonController {
     public String toUpdate(@PathVariable("id") Long id, Model model, HttpSession session){
         Person p = personService.getById(id);
         if (p == null){
-            throw new KontaktNotFoundException("Kontakt  mit  id  " + id + "  nicht  gefunden!");
+            //throw new KontaktNotFoundException("Kontakt  mit  id  " + id + "  nicht  gefunden!");
+            throw new NoSuchElementException("Kontakt  mit  id  " + id + "  nicht  gefunden!");
 
         }
 
@@ -146,7 +148,9 @@ public class PersonController {
     public String delete(@PathVariable("id") Long id, RedirectAttributes attributes){
         Person p = personService.getById(id);
         if (p == null){
-            throw new KontaktNotFoundException("Kontakt  mit  id  " + id + "  nicht  gefunden!");
+            //throw new KontaktNotFoundException("Kontakt  mit  id  " + id + "  nicht  gefunden!");
+            throw new NoSuchElementException("Kontakt  mit  id  " + id + "  nicht  gefunden!");
+
         }
 
         personService.deletePerson(id);

@@ -22,7 +22,6 @@ public class LoginController {
     private static final String REDIRECT_DETAIL = "redirect:/admin/detail";
     private static final String REDIRECT_ADMIN = "redirect:/admin";
     private static final String REDIRECT_ = "redirect:/";
-    private static final String DETAIL = "../admin/detail";
 
     @Autowired
     UserService service;
