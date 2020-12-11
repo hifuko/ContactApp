@@ -13,7 +13,7 @@
 
 <!--num: index of the active part-->
 <nav th:fragment="menuA(num)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
-    <div class="m-margin-tb-horizontal-small m-padded-tb-horizontal-large">
+    <div class="m-margin-lr-small m-padded-lr-large">
         <div class="ui secondary inverted stackable menu">
             <h2 class="ui pink header item">Computacenter</h2>
             <a href="#" class="m-item item m-mobile-hide"  th:href="@{/}" th:classappend="${num==1} ? 'active'"><i class="address book icon"></i>
@@ -52,7 +52,7 @@
                     </div>
                     <i class="dropdown icon"></i>
                     <div class="menu">
-                        <a href="#" th:href="@{/admin/logout}" class="item">log out</a>
+                        <a href="#" th:href="@{/admin/logout}" th:text="#{login.logout}" class="item">log out</a>
                     </div>
                 </div>
             </div>

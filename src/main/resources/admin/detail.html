@@ -17,7 +17,7 @@
 
 
 <!--body-->
-<div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container">
+<div class="m-padded-tb-medium m-margin-lr-big m-container">
 
     <div class="ui container">
         <div class="m-container-tiny">
@@ -40,7 +40,7 @@
             Kontakte
         </h1>
 
-        <a href="#" th:href="@{/admin/create}" th:text="#{create.create}" class="ui right floated m-padded-tb-horizontal-small pink button">erstellen</a>
+        <a href="#" th:href="@{/admin/create}" th:text="#{create.create}" class="ui right floated m-padded-lr-small pink button">erstellen</a>
 
 
         <span th:text="${page.getTotalElements()}" class="ui left aligned header pink m-font-medium ">5 </span>
@@ -78,7 +78,7 @@
                     </a>
                 </td>
                 <td>
-                    <a href="#" th:href="@{/admin/update/{id}(id=${person.id})}" class="ui pink mini m-margin-tb-horizontal-small button"><i class="edit icon"></i></a>
+                    <a href="#" th:href="@{/admin/update/{id}(id=${person.id})}" class="ui pink mini m-margin-lr-small button"><i class="edit icon"></i></a>
                     <a href="#" th:href="@{/admin/delete/{id}(id=${person.id})}" class="ui black mini button "><i class="close icon"></i></a>
                 </td>
                 <td></td>
@@ -102,7 +102,7 @@
                         </div>
 
                         <div class="right aligned column">
-                            <a href="#" th:href="@{/admin/detail(page=${page.number}+1)}" th:text="#{detail.next}"  th:unless="${page.last}" class="ui black button m-padded-tb-horizontal-small">nächste</a>
+                            <a href="#" th:href="@{/admin/detail(page=${page.number}+1)}" th:text="#{detail.next}"  th:unless="${page.last}" class="ui black button m-padded-lr-small">nächste</a>
                         </div>
                     </div>
                 </th>
@@ -138,9 +138,25 @@
                 <div class="four wide column">
                     <h4 class="ui inverted header" th:text="#{footer.language}">Sprache</h4>
                     <div class="ui inverted link list">
-                        <a href="#" th:href="@{/admin/detail(l='de_DE')}" th:text="#{footer.language.german}" class="item">Deutsch</a>
-                        <a href="#" th:href="@{/admin/detail(l='en_US')}" th:text="#{footer.language.en}" class="item">Englisch</a>
-                        <a href="#" th:href="@{/admin/detail(l='zh_CN')}" th:text="#{footer.language.zh}" class="item">Chinesisch</a>
+                        <div>
+                            <a href="#" th:href="@{/admin/detail(l='de_DE')}">
+                                <i class="de flag"></i>
+                                <span th:text="#{footer.language.german}" class="item">Deutsch</span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#" th:href="@{/admin/detail(l='en_US')}">
+                                <i class="us flag"></i>
+                                <span th:text="#{footer.language.en}" class="item">Englisch</span>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="#" th:href="@{/admin/detail(l='zh_CN')}">
+                                <i class="cn flag"></i>
+                                <span th:text="#{footer.language.zh}" class="item">Chinesisch</span>
+                            </a>
+                        </div>
                     </div>
 
 

@@ -18,7 +18,7 @@
 
 
 <!--body-->
-<div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container-small">
+<div class="m-padded-tb-medium m-margin-lr-big m-container-small">
 
     <div class="ui container">
 
@@ -26,7 +26,7 @@
         <form method="post" action="#" class="ui form m-margin-t-big" th:object="${person}" th:action="@{/admin/detail}">
 
 
-            <div class="ui inverted segment m-padded-tb-big m-padded-tb-horizontal-large">
+            <div class="ui inverted segment m-padded-tb-big m-padded-lr-large">
 
                 <h2 class="ui center aligned header" th:text="#{createcontact}">Kontakt erstellen</h2>
                 <br>
@@ -78,7 +78,7 @@
 
 
                     <div class="ui right aligned container"><!--onclick="window.history.go(-1)"-->
-                        <a th:href="@{/admin/detail}"><button type="button" th:text="#{create.back}" class="ui button m-padded-tb-horizontal-small">zurück</button></a>
+                        <a th:href="@{/admin/detail}"><button type="button" th:text="#{create.back}" class="ui button m-padded-lr-small">zurück</button></a>
                         <button type="submit" th:text="#{create.create}" class="ui pink button">erstellen</button>
 
                     </div>
@@ -144,9 +144,26 @@
                 <div class="four wide column">
                     <h4 class="ui inverted header" th:text="#{footer.language}">Sprache</h4>
                     <div class="ui inverted link list">
-                        <a href="#" th:href="@{/admin/create(l='de_DE')}" th:text="#{footer.language.german}" class="item">Deutsch</a>
-                        <a href="#" th:href="@{/admin/create(l='en_US')}" th:text="#{footer.language.en}" class="item">Englisch</a>
-                        <a href="#" th:href="@{/admin/create(l='zh_CN')}" th:text="#{footer.language.zh}" class="item">Chinesisch</a>
+
+                        <div>
+                            <a href="#" th:href="@{/admin/create(l='de_DE')}">
+                                <i class="de flag"></i>
+                                <span th:text="#{footer.language.german}" class="item">Deutsch</span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#" th:href="@{/admin/create(l='en_US')}">
+                                <i class="us flag"></i>
+                                <span th:text="#{footer.language.en}" class="item">Englisch</span>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="#" th:href="@{/admin/create(l='zh_CN')}">
+                                <i class="cn flag"></i>
+                                <span th:text="#{footer.language.zh}" class="item">Chinesisch</span>
+                            </a>
+                        </div>
                     </div>
 
 

@@ -62,29 +62,33 @@ a:hover{
 }
 
 /*---------------padding horizontal-------------------*/
-.m-padded-tb-horizontal-tiny{
+.m-padded-lr-tiny{
     padding-left: 1em !important;
     padding-right: 1em !important;
 }
 
-.m-padded-tb-horizontal-small{
+.m-padded-lr-small{
     padding-left: 2em !important;
     padding-right: 2em !important;
 }
 
-.m-padded-tb-horizontal-medium-responsive{
+.m-padded-lr-medium-responsive{
     padding-left: 3em !important;
     padding-right: 3em !important;
 }
 
-.m-padded-tb-horizontal-big{
+.m-padded-lr-big{
     padding-left: 4em !important;
     padding-right: 4em !important;
 }
 
-.m-padded-tb-horizontal-large{
+.m-padded-lr-large{
     padding-left: 5em !important;
     padding-right: 5em !important;
+}
+
+.m-padded-l-medium{
+    padding-left: 3em !important;
 }
 
 
@@ -120,12 +124,12 @@ m-margin-t-medium{
     margin-bottom: 5em !important;
 }
 
-.m-margin-tb-horizontal-small{
+.m-margin-lr-small{
     margin-left: 1em !important;
     margin-right: 1em !important;
 }
 
-.m-margin-tb-horizontal-big{
+.m-margin-lr-big{
     margin-left: 3em !important;
     margin-right: 3em !important;
 }
@@ -188,7 +192,7 @@ m-margin-t-medium{
         display: block !important;
     }
 
-    .m-padded-tb-horizontal-medium-responsive{
+    .m-padded-lr-medium-responsive{
         padding-left: 0 !important;
         padding-right: 0 !important;
 

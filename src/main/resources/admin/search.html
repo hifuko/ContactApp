@@ -21,7 +21,7 @@
 
 
 <!--body-->
-<div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container">
+<div class="m-padded-tb-medium m-margin-lr-big m-container">
 
     <div class="ui container">
 
@@ -63,7 +63,7 @@
                 <td th:text="${person.telefonnummer}">1776553525</td>
                 <td th:text="${person.abteilung.name}">IT Abteilung</td>
                 <td>
-                    <a href="#" th:href="@{/admin/update/{id}(id=${person.id})}" class="ui pink mini m-margin-tb-horizontal-small button"><i class="edit icon"></i></a>
+                    <a href="#" th:href="@{/admin/update/{id}(id=${person.id})}" class="ui pink mini m-margin-lr-small button"><i class="edit icon"></i></a>
                     <a href="#" th:href="@{/admin/delete/{id}(id=${person.id})}" class="ui black mini button "><i class="close icon"></i></a>
                 </td>
                 <td></td>
@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="right aligned column">
-                            <a href="#" th:href="@{/admin/detail(page=${page.number}+1)}"  th:unless="${page.last}" class="ui tiny black button m-padded-tb-horizontal-small">nächste</a>
+                            <a href="#" th:href="@{/admin/detail(page=${page.number}+1)}"  th:unless="${page.last}" class="ui tiny black button m-padded-lr-small">nächste</a>
                         </div>
                     </div>
                 </th>
@@ -96,7 +96,7 @@
             </tfoot>
         </table>
 
-        <a href="#" th:href="@{/admin/detail}" class="ui right floated m-padded-tb-horizontal-small black button">zurück</a>
+        <a href="#" th:href="@{/admin/detail}" class="ui right floated m-padded-lr-small black button">zurück</a>
 
 
 

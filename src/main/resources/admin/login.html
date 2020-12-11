@@ -24,14 +24,14 @@
                 <!--/../admin/login -> GetMapping("/admin/login")-->
                 <form class="ui large form m-padded-tb-small m-margin-b-large" method="post" action="#" th:action="@{/admin/login}">
                     <div class="ui stacked pink segment m-padded-tb-big">
-                        <div class="field m-padded-tb-horizontal-big" >
+                        <div class="field m-padded-lr-big" >
                             <br>
                             <div class="ui left icon input">
                                 <i class="user icon"></i>
                                 <input type="text" th:placeholder="#{login.username}" name="username" placeholder="Username">
                             </div>
                         </div>
-                        <div class="field m-padded-tb-horizontal-big">
+                        <div class="field m-padded-lr-big">
                             <div class="ui left icon input">
                                 <i class="lock icon"></i>
                                 <input type="password" th:placeholder="#{login.password}" name="password" placeholder="Passwort">
@@ -43,7 +43,7 @@
                     </div>
 
 
-                    <div class="ui error m-padded-tb-medium m-padded-tb-horizontal-medium-responsive message animate__bounceIn"></div>
+                    <div class="ui error m-padded-tb-medium m-padded-lr-medium-responsive message animate__bounceIn"></div>
 
                     <div class="ui negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></div>
 
@@ -75,9 +75,26 @@
                 <div class="four wide column">
                     <h4 class="ui inverted header" th:text="#{footer.language}">Sprache</h4>
                     <div class="ui inverted link list">
-                        <a href="#" th:href="@{/admin(l='de_DE')}" th:text="#{footer.language.german}" class="item">Deutsch</a>
-                        <a href="#" th:href="@{/admin(l='en_US')}" th:text="#{footer.language.en}" class="item">Englisch</a>
-                        <a href="#" th:href="@{/admin(l='zh_CN')}" th:text="#{footer.language.zh}" class="item">Chinesisch</a>
+
+                        <div>
+                            <a href="#" th:href="@{/admin(l='de_DE')}">
+                                <i class="de flag"></i>
+                                <span th:text="#{footer.language.german}" class="item">Deutsch</span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#" th:href="@{/admin(l='en_US')}">
+                                <i class="us flag"></i>
+                                <span th:text="#{footer.language.en}" class="item">Englisch</span>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="#" th:href="@{/admin(l='zh_CN')}">
+                                <i class="cn flag"></i>
+                                <span th:text="#{footer.language.zh}" class="item">Chinesisch</span>
+                            </a>
+                        </div>
                     </div>
 
 

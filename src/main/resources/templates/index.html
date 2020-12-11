@@ -22,7 +22,7 @@
 
 
 <!--body-->
-<div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container-small">
+<div class="m-padded-tb-medium m-margin-lr-big m-container-small">
 
     <div class="ui container">
         <h3 class="ui center aligned icon header">
@@ -70,7 +70,7 @@
                         </div>
 
                         <div class="right aligned column">
-                            <a href="#" th:href="@{/(page=${page.number}+1)}" th:text="#{detail.next}" th:unless="${page.last}" class="ui  black button m-padded-tb-horizontal-small">nächste</a>
+                            <a href="#" th:href="@{/(page=${page.number}+1)}" th:text="#{detail.next}" th:unless="${page.last}" class="ui  black button m-padded-lr-small">nächste</a>
                         </div>
                     </div>
 
@@ -108,12 +108,26 @@
                 <div class="four wide column">
                     <h4 class="ui inverted header" th:text="#{footer.language}">Sprache</h4>
                     <div class="ui inverted link list">
-                        <a href="#" th:href="@{/(l='de_DE')}" th:text="#{footer.language.german}" class="item">Deutsch</a>
-                        <a href="#" th:href="@{/(l='en_US')}" th:text="#{footer.language.en}" class="item">Englisch</a>
-                        <a href="#" th:href="@{/(l='zh_CN')}" th:text="#{footer.language.zh}" class="item">Chinesisch</a>
+                        <div>
+                            <a href="#" th:href="@{/(l='de_DE')}">
+                                <i class="de flag"></i>
+                                <span th:text="#{footer.language.german}" class="item">Deutsch</span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#" th:href="@{/(l='en_US')}">
+                                <i class="us flag"></i>
+                                <span th:text="#{footer.language.en}" class="item">Englisch</span>
+                            </a>
+                        </div>
+
+                       <div>
+                           <a href="#" th:href="@{/(l='zh_CN')}">
+                               <i class="cn flag"></i>
+                               <span th:text="#{footer.language.zh}" class="item">Chinesisch</span>
+                           </a>
+                       </div>
                     </div>
-
-
                 </div>
                 <div class="four wide column">
                     <h4 class="ui inverted header" th:text="#{footer.aboutus}">Über uns</h4>

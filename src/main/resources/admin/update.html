@@ -21,14 +21,14 @@
 
 
 <!--body-->
-<div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container-small">
+<div class="m-padded-tb-medium m-margin-lr-big m-container-small">
 
     <div class="ui container">
 
         <form method="post" action="#" class="ui form m-margin-t-big" th:object="${person}" th:action="@{/admin/person/{id}(id=${person.id})}">
 
 
-            <div class="ui inverted segment m-padded-tb-big m-padded-tb-horizontal-large">
+            <div class="ui inverted segment m-padded-tb-big m-padded-lr-large">
 
                 <h2 class="ui center aligned header" th:text="#{updatecontact}">Kontakt aktualisieren</h2>
                 <br>
@@ -79,7 +79,7 @@
 
 
                     <div class="ui right aligned container">
-                        <button type="button" class="ui button m-padded-tb-horizontal-small" th:text="#{create.back}" onclick="window.history.go(-1)">zurück</button>
+                        <button type="button" class="ui button m-padded-lr-small" th:text="#{create.back}" onclick="window.history.go(-1)">zurück</button>
                         <button type="submit" class="ui pink button" th:text="#{update.update}">aktualisieren</button>
 
                     </div>

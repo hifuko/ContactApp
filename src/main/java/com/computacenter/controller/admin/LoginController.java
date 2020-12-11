@@ -50,7 +50,7 @@ public class LoginController {
                         HttpSession session,
                         RedirectAttributes attributes){
         if (username.isBlank() || password.isBlank()){
-            attributes.addFlashAttribute("message", "Username oder Password leer.");
+            attributes.addFlashAttribute("message", "Benutzername oder Passwort leer.");
             return REDIRECT_ADMIN;
         }
         User user = service.checkUser(username, password);
