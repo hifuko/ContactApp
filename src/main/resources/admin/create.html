@@ -17,47 +17,43 @@
 
 
 
-<br>
-<br>
-
-
 <!--body-->
 <div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container-small">
 
     <div class="ui container">
 
-        <br>
-        <form method="post" action="#" class="ui form" th:object="${person}" th:action="@{/admin/detail}">
+
+        <form method="post" action="#" class="ui form m-margin-t-big" th:object="${person}" th:action="@{/admin/detail}">
 
 
             <div class="ui inverted segment m-padded-tb-big m-padded-tb-horizontal-large">
 
-                <h2 class="ui center aligned header">Kontakt erstellen</h2>
+                <h2 class="ui center aligned header" th:text="#{createcontact}">Kontakt erstellen</h2>
                 <br>
                 <div class="ui inverted form" >
                     <div class="two required fields">
                         <div class="field">
-                            <label>Vorname</label>
-                            <input placeholder="Vorname" name="vorname" id="vn" th:value="*{vorname}" pattern="[a-zA-Z]*" type="text">
+                            <label th:text="#{detail.firstname}">Vorname</label>
+                            <input placeholder="Vorname" name="vorname" id="vn" th:value="*{vorname}" pattern="[a-zA-Z\u00C0-\u017F]*" type="text">
                         </div>
                         <div class="field">
-                            <label>Nachname</label>
-                            <input name="nachname" id="nn" placeholder="Nachname" th:value="*{nachname}" pattern="[a-zA-Z]*" type="text">
+                            <label th:text="#{detail.lastname}">Nachname</label>
+                            <input name="nachname" id="nn" placeholder="Nachname" th:value="*{nachname}" pattern="[a-zA-Z\u00C0-\u017F]*" type="text">
                         </div>
                     </div>
                     <div class="required field">
-                        <label>E-mail</label>
+                        <label th:text="#{detail.email}">E-mail</label>
                         <input type="email" name="mailadresse" id="mail" th:value="*{mailadresse}" placeholder="Mailadresse">
                     </div>
 
 
                     <div class="two fields">
-                        <div class="field">
-                            <label>Telefonnummer</label>
+                        <div class="required field">
+                            <label th:text="#{detail.number}">Telefonnummer</label>
                             <input type="text" name="telefonnummer"  th:value="*{telefonnummer}" id="tn" placeholder="Telefonnummer" pattern="[0-9]*">
                         </div>
                         <div class="field">
-                            <label>Abteilung</label>
+                            <label th:text="#{detail.department}">Abteilung</label>
                             <div class="ui search selection dropdown">
                                 <!---->
                                 <input type="hidden" name="abteilung.id" th:value="*{abteilung}!=null ? *{abteilung.id} : 1">
@@ -75,44 +71,50 @@
                     <div class="required field">
                         <div class="ui checkbox">
                             <input type="checkbox" id="agree" name="agree"  class="hidden" >
-                            <label for="agree">Ich stimme den AGB zu.</label>
+                            <label for="agree" th:text="#{create.agree}">Ich stimme den AGB zu.</label>
                         </div>
                     </div>
 
 
 
-                    <div class="ui right aligned container">
-                        <button type="button" class="ui button m-padded-tb-horizontal-small" onclick="window.history.go(-1)">back</button>
-                        <button type="submit" class="ui pink button">erstellen</button>
+                    <div class="ui right aligned container"><!--onclick="window.history.go(-1)"-->
+                        <a th:href="@{/admin/detail}"><button type="button" th:text="#{create.back}" class="ui button m-padded-tb-horizontal-small">zurück</button></a>
+                        <button type="submit" th:text="#{create.create}" class="ui pink button">erstellen</button>
 
                     </div>
 
                     <br>
-                    <!--<div class="ui submit button">Submit</div>-->
                 </div>
             </div>
 
-            <!--error message from js-->
+            <!--error message from js (front end)-->
             <div class="ui error message"></div>
 
+            <!--show error message from the back end validation-->
+            <div class="ui negative message" th:if="${#fields.hasErrors('vorname')}">
+                <i class="close icon"></i>
+                <div class="header">Error</div>
+                <p th:errors="*{vorname}">Invalid input.</p>
+            </div>
+            <div class="ui negative message" th:if="${#fields.hasErrors('nachname')}">
+                <i class="close icon"></i>
+                <div class="header">Error</div>
+                <p th:errors="*{nachname}">Invalid input.</p>
+            </div>
             <div class="ui negative message" th:if="${#fields.hasErrors('mailadresse')}">
                 <i class="close icon"></i>
                 <div class="header">Error</div>
                 <p th:errors="*{mailadresse}">Invalid input.</p>
             </div>
+            <div class="ui negative message" th:if="${#fields.hasErrors('telefonnummer')}">
+                <i class="close icon"></i>
+                <div class="header">Error</div>
+                <p th:errors="*{telefonnummer}">Invalid input.</p>
+            </div>
 
 
 
         </form>
-
-
-
-
-
-        <br>
-        <br>
-
-
 
     </div>
 </div>
@@ -121,7 +123,46 @@
 
 
 <!--footer-->
+<!--
 <footer th:replace="_fragments :: footer"></footer>
+-->
+<footer>
+    <div class="ui inverted center aligned vertical segment m-padded-tb-massive m-margin-t-large">
+        <div class="ui container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <img src="../static/images/code.jpg" th:src="@{/images/code.jpg}" class="ui rounded centered image" style="width: 100px; padding-left: 2px" alt="">
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header" th:text="#{footer.socialMedia}">Social Media</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item"><i class="github icon"></i>github</a>
+                        <a href="#" class="item"><i class="wechat icon"></i>wechat</a>
+                        <a href="#" class="item"><i class="facebook icon"></i>facebook</a>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header" th:text="#{footer.language}">Sprache</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" th:href="@{/admin/create(l='de_DE')}" th:text="#{footer.language.german}" class="item">Deutsch</a>
+                        <a href="#" th:href="@{/admin/create(l='en_US')}" th:text="#{footer.language.en}" class="item">Englisch</a>
+                        <a href="#" th:href="@{/admin/create(l='zh_CN')}" th:text="#{footer.language.zh}" class="item">Chinesisch</a>
+                    </div>
+
+
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header" th:text="#{footer.aboutus}">Über uns</h4>
+                    <p th:text="#{footer.family}">Wir sind eine Familie.</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-spaced">Copyright © 2020 - 2021 Weijia designed by Weijia</p>
+    </div>
+</footer>
+
 
 
 <!--/*/<th:block th:replace="_fragments :: script">/*/-->
@@ -134,9 +175,11 @@
 
     $('.ui.dropdown').dropdown();
 
+    //disable vorname, nachname, mailadresse front end validation on purpose,
+    // so backend validation message can show
     $('.ui.form').form({
         fields: {
-            vorname: {
+           /* vorname: {
                 identifier: 'vorname',
                 rules: [{
                     type: 'empty',
@@ -156,7 +199,7 @@
                     type: 'empty',
                     prompt: 'Mailadresse: darf nicht leer sein.'
                 }]
-            },
+            },*/
             agree: {
                 identifier: 'agree',
                 rules: [{

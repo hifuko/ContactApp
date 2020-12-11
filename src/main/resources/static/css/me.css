@@ -1,8 +1,22 @@
 body{
     background: url("../images/bg4.jpg");
+    zoom:120% !important;
 
-    zoom:130% !important
+}
 
+
+/*----------------------table color-----------------------*/
+
+tr:hover{
+    background-color: rgb(250, 233, 240);
+}
+
+a{
+    color: #f64ca1;
+}
+
+a:hover{
+    color: black;
 
 }
 
@@ -88,6 +102,22 @@ body{
 .m-margin-tb-big{
     margin-top: 3em !important;
     margin-bottom: 3em !important;
+}
+
+m-margin-t-medium{
+    margin-top: 2em !important;
+}
+
+.m-margin-t-big{
+    margin-top: 8em !important;
+}
+
+.m-margin-t-large{
+    margin-top: 10em !important;
+}
+
+.m-margin-b-large{
+    margin-bottom: 5em !important;
 }
 
 .m-margin-tb-horizontal-small{
@@ -207,3 +237,20 @@ body{
     position: fixed !important;
 }
 
+
+/*----------------font------------------*/
+
+.m-font-large{
+
+    font-size: 3em !important;
+}
+
+.m-font-big{
+
+    font-size: 2.5em !important;
+}
+
+.m-font-medium{
+
+    font-size: 1.5em !important;
+}

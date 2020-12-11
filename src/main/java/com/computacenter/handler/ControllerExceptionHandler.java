@@ -1,5 +1,6 @@
 package com.computacenter.handler;
 
+import com.computacenter.exception.KontaktNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
@@ -24,19 +25,37 @@ public class ControllerExceptionHandler {
         //we don't want to intercept all exceptions, so we let some pass
         //if we gave @ResponseStatus to the this type of exception, then we let it pass.
         // springboot will go to the right error page.
-        /*if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null){
-            throw e;
-        }*/
-
+//        if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null){
+//            throw e;
+//        }
 
         //send data
         ModelAndView mv = new ModelAndView();
         mv.addObject("url", request.getRequestURL());
-        mv.addObject("exception", e);
+        mv.addObject("exception", e.getMessage());
 
         //go to
         mv.setViewName("error/error");
         return mv;
 
     }
+
+    @ExceptionHandler(KontaktNotFoundException.class) //
+    public ModelAndView kontaktNotFoundexceptionHandler(HttpServletRequest request, Exception e) throws Exception {
+
+        //logging
+        logger.error("request url: {}, exception: {}", request.getRequestURL(), e.getMessage());
+
+        ModelAndView mv = new ModelAndView();
+
+        //send data
+        mv.addObject("url", request.getRequestURL());
+        mv.addObject("exception", e.getMessage());
+
+        //go to
+        mv.setViewName("error/404");
+        return mv;
+
+    }
+
 }

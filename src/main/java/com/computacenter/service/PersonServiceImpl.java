@@ -2,19 +2,14 @@ package com.computacenter.service;
 
 import com.computacenter.pojo.Person;
 import com.computacenter.repository.PersonRepository;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.List;
+
+import javax.transaction.Transactional;
+
 
 @Service
 public class PersonServiceImpl implements PersonService{
@@ -24,6 +19,7 @@ public class PersonServiceImpl implements PersonService{
 
 
     @Override
+    @Transactional
     public Person savePerson(Person person) {
         return repository.save(person);
     }
@@ -39,11 +35,23 @@ public class PersonServiceImpl implements PersonService{
     }
 
     @Override
+    public Page<Person> listPersons(String query, Pageable pageable) {
+        return repository.findByQeury("%"+query+"%", pageable);
+    }
+
+    @Override
+    public Page<Person> listPersons(Long ab_id, Pageable pageable) {
+        return repository.findByAbteilung_Id(ab_id, pageable);
+    }
+
+    @Override
+    @Transactional
     public Person updatePerson(Person person) {
         return repository.save(person);
     }
 
     @Override
+    @Transactional
     public void deletePerson(Long id) {
         repository.deleteById(id);
     }
@@ -52,4 +60,10 @@ public class PersonServiceImpl implements PersonService{
     public Person getByMailadresse(String mailadresse) {
         return repository.getByMailadresse(mailadresse);
     }
+
+    @Override
+    public Person getById(Long id) {
+        return repository.getById(id);
+    }
+
 }

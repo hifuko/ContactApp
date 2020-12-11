@@ -13,28 +13,38 @@
 <!--responsive on mobile device: add 'stackable' in all grid-->
 
 <!--nav-->
-<nav th:replace="_fragments :: menu"></nav>
-
+<nav th:replace="_fragments :: menuA(1)"></nav>
 
 
 <br>
 <br>
+
 
 
 <!--body-->
-<div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container-tiny">
+<div id="waypoint" class="m-padded-tb-medium m-margin-tb-horizontal-big m-container-small">
 
     <div class="ui container">
-        <h2 class="ui center aligned header">Kontakte</h2>
+        <h3 class="ui center aligned icon header">
+            <i class="circular users icon"></i>
+        </h3>
+        <h1 class="ui center aligned header m-font-medium" th:text="#{detail.contacts}">
+            Übersicht
+        </h1>
 
+<!--
+        <div th:text="${page.getTotalElements()} + '  Kontakt(e)'" class="ui right aligned header m-padded-tb-horizontal-small">5 Kontakte</div>
+-->
 
-        <br>
-        <table class="ui compact center aligned striped pink table">
+        <span th:text="${page.getTotalElements()}" class="ui left aligned header pink m-font-medium">5</span>
+        <span class="ui header" th:text="#{detail.contacts}"> Kontakt(e)</span>
+
+        <table class="ui compact center aligned striped pink table" >
             <thead>
             <tr>
                 <th></th>
-                <th>Vorname</th>
-                <th>Nachname</th>
+                <th th:text="#{detail.firstname}">Vorname</th>
+                <th th:text="#{detail.lastname}">Nachname</th>
             </tr>
             </thead>
             <tbody>
@@ -50,30 +60,25 @@
             <tr>
             <tr>
                 <th colspan="3">
+                    <div class="ui middle aligned three column grid" th:if="${page.totalPages}>1">
+                        <div class="left aligned column">
+                            <a href="#" th:href="@{/(page=${page.number}-1)}" th:text="#{detail.previous}"  th:unless="${page.first}" class="ui  pink button">vorherige</a>
+                        </div>
 
-                    <div class="ui pagination menu"  th:if="${page.totalPages>1}">
-                        <a onclick="page(this)" class="item"
-                           th:href="@{/(page=${page.number}-1)}"
-                           th:unless="${page.first}">
-                            vorherige
-                        </a>
+                        <div class="center aligned column">
+                            <div th:text="${page.number+1} + '/' + ${page.getTotalPages()}">1/1</div>
+                        </div>
 
-                        <a onclick="page(this)" class="item m-padded-tb-horizontal-small"
-                           th:href="@{/(page=${page.number}+1)}"
-                           th:unless="${page.last}">
-                            nächste
-                        </a>
+                        <div class="right aligned column">
+                            <a href="#" th:href="@{/(page=${page.number}+1)}" th:text="#{detail.next}" th:unless="${page.last}" class="ui  black button m-padded-tb-horizontal-small">nächste</a>
+                        </div>
                     </div>
+
                 </th>
             </tr>
             </tr>
             </tfoot>
         </table>
-        <br>
-        <br>
-        <br>
-
-
 
     </div>
 </div>
@@ -82,7 +87,45 @@
 
 
 <!--footer-->
+<!--
 <footer th:replace="_fragments :: footer"></footer>
+-->
+<footer>
+    <div class="ui inverted center aligned vertical segment m-padded-tb-massive m-margin-t-large">
+        <div class="ui container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <img src="../static/images/code.jpg" th:src="@{/images/code.jpg}" class="ui rounded centered image" style="width: 100px; padding-left: 2px" alt="">
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header" th:text="#{footer.socialMedia}">Social Media</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item"><i class="github icon"></i>github</a>
+                        <a href="#" class="item"><i class="wechat icon"></i>wechat</a>
+                        <a href="#" class="item"><i class="facebook icon"></i>facebook</a>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header" th:text="#{footer.language}">Sprache</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" th:href="@{/(l='de_DE')}" th:text="#{footer.language.german}" class="item">Deutsch</a>
+                        <a href="#" th:href="@{/(l='en_US')}" th:text="#{footer.language.en}" class="item">Englisch</a>
+                        <a href="#" th:href="@{/(l='zh_CN')}" th:text="#{footer.language.zh}" class="item">Chinesisch</a>
+                    </div>
+
+
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header" th:text="#{footer.aboutus}">Über uns</h4>
+                    <p th:text="#{footer.family}">Wir sind eine Familie.</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-spaced">Copyright © 2020 - 2021 Weijia designed by Weijia</p>
+    </div>
+</footer>
 
 
 <!--/*/<th:block th:replace="_fragments :: script">/*/-->

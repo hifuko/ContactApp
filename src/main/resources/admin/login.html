@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
 <body>
-<nav th:replace="_fragments :: menu"></nav>
+<nav th:replace="_fragments :: menuA(0)"></nav>
 
 <div class="m-container-small m-padded-tb-massive" style="width: 30em">
     <div class="ui container">
@@ -17,28 +17,28 @@
             <div class="column">
                 <h2 class="ui image header">
                     <img src="../static/images/paw.png" th:src="@{/images/paw.png}" class="image animate__bounceIn">
-                    <div class="content">
-                        Log-in to your account
+                    <div class="content" th:text="#{login.tip}">
+                        Login
                     </div>
                 </h2>
                 <!--/../admin/login -> GetMapping("/admin/login")-->
-                <form class="ui large form m-padded-tb-small" method="post" action="#" th:action="@{/admin/login}">
+                <form class="ui large form m-padded-tb-small m-margin-b-large" method="post" action="#" th:action="@{/admin/login}">
                     <div class="ui stacked pink segment m-padded-tb-big">
                         <div class="field m-padded-tb-horizontal-big" >
                             <br>
                             <div class="ui left icon input">
                                 <i class="user icon"></i>
-                                <input type="text" name="username" placeholder="Username">
+                                <input type="text" th:placeholder="#{login.username}" name="username" placeholder="Username">
                             </div>
                         </div>
                         <div class="field m-padded-tb-horizontal-big">
                             <div class="ui left icon input">
                                 <i class="lock icon"></i>
-                                <input type="password" name="password" placeholder="Password">
+                                <input type="password" th:placeholder="#{login.password}" name="password" placeholder="Passwort">
                             </div>
                         </div>
                         <br>
-                        <button class="ui medium black submit button" style="color: white">Login</button>
+                        <button class="ui medium black submit button" th:text="#{login.button}" style="color: white">Login</button>
 
                     </div>
 
@@ -54,6 +54,46 @@
 </div>
 
 
+<!--footer-->
+<!--<footer th:replace="_fragments :: footer"></footer>-->
+<!--footer-->
+<footer>
+    <div class="ui inverted center aligned vertical segment m-padded-tb-massive m-margin-t-large">
+        <div class="ui container">
+            <div class="ui inverted divided stackable grid">
+                <div class="three wide column">
+                    <img src="../static/images/code.jpg" th:src="@{/images/code.jpg}" class="ui rounded centered image" style="width: 100px; padding-left: 2px" alt="">
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header" th:text="#{footer.socialMedia}">Social Media</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item"><i class="github icon"></i>github</a>
+                        <a href="#" class="item"><i class="wechat icon"></i>wechat</a>
+                        <a href="#" class="item"><i class="facebook icon"></i>facebook</a>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header" th:text="#{footer.language}">Sprache</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" th:href="@{/admin(l='de_DE')}" th:text="#{footer.language.german}" class="item">Deutsch</a>
+                        <a href="#" th:href="@{/admin(l='en_US')}" th:text="#{footer.language.en}" class="item">Englisch</a>
+                        <a href="#" th:href="@{/admin(l='zh_CN')}" th:text="#{footer.language.zh}" class="item">Chinesisch</a>
+                    </div>
+
+
+                </div>
+                <div class="four wide column">
+                    <h4 class="ui inverted header" th:text="#{footer.aboutus}">Über uns</h4>
+                    <p th:text="#{footer.family}">Wir sind eine Familie.</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-spaced">Copyright © 2020 - 2021 Weijia designed by Weijia</p>
+    </div>
+</footer>
+
 <!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <!--/*/</th:block>/*/-->
 
@@ -64,14 +104,14 @@
                 identifier: 'username',
                 rules: [{
                     type: 'empty',
-                    prompt: 'Username:  cannot be empty.'
+                    prompt: 'Benutzername:  darf nicht leer sein.'
                 }]
             },
             password: {
                 identifier: 'password',
                 rules: [{
                     type: 'empty',
-                    prompt: 'Password:  cannot be empty.'
+                    prompt: 'Passwort:  darf nicht leer sein.'
                 }]
             }
         }

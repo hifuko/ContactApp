@@ -9,38 +9,22 @@
 </head>
 <body>
 
-<nav th:replace="_fragments :: menuE">
+<nav th:replace="_fragments :: menuA(0)"></nav>
 
-</nav>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-<div class="m-container-small m-padded-tb-massive">
-    <div class="ui error message">
+<div class="m-container-small m-padded-tb-big">
+    <div class="ui m-text-spaced error message">
         <div class="ui container">
-            <h2>500</h2>
-            <h3>sorry...</h3>
+            <h1 class="ui centered m-margin-tb-tiny header">500</h1>
+            <h3 class="ui centered m-margin-tb-tiny header">Oops...Der Service ist nicht normal. Bitte wenden Sie sich an den Administrator</h3>
+            <div class="ui centered m-margin-tb-tiny header" th:text="${exception}"></div>
+            <br>
+
+            <img src="../../static/images/exc.jpg" th:src="@{/images/exc.jpg}" class="ui m-margin-top rounded image">
+
         </div>
     </div>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 
 
 

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suchergebnisse</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+</head>
+<body>
+
+<!--responsive on mobile device: add 'stackable' in all grid-->
+
+<!--nav-->
+<nav th:replace="_fragments :: menuA(2)"></nav>
+
+
+
+
+
+
+<!--body-->
+<div class="m-padded-tb-medium m-margin-tb-horizontal-big m-container">
+
+    <div class="ui container">
+
+        <h3 class="ui center aligned icon header">
+            <i class="circular search icon"></i>
+        </h3>
+        <h1 class="ui left aligned header m-font-medium" th:text="'Suchergebnisse für ' + ${query} + ':'" th:if="${query}!=null"></h1>
+        <h1 class="ui left aligned header m-font-medium" th:text="'Suchergebnisse für ' + ${page.getContent().get(0).abteilung.name} + ':'" th:if="${query}==null"></h1>
+
+        <div th:text="${page.getTotalElements()} + '  Kontakt(e)'" class="ui header">5 Kontakte</div>
+
+
+        <table class="ui compact center aligned striped pink table m-margin-t-medium">
+            <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Mailadresse</th>
+                <th>Telefonnummer</th>
+                <th>Abteilung</th>
+                <th>Bearbeiten/Löschen</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="person,iterStat: ${page.content}">
+                <td></td>
+                <td></td>
+                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${person.vorname}">Ivana</td>
+                <td th:text="${person.nachname}">Luo</td>
+                <td th:text="${person.mailadresse}">ivanaluo1994@gmail.com</td>
+                <td th:text="${person.telefonnummer}">1776553525</td>
+                <td th:text="${person.abteilung.name}">IT Abteilung</td>
+                <td>
+                    <a href="#" th:href="@{/admin/update/{id}(id=${person.id})}" class="ui pink mini m-margin-tb-horizontal-small button"><i class="edit icon"></i></a>
+                    <a href="#" th:href="@{/admin/delete/{id}(id=${person.id})}" class="ui black mini button "><i class="close icon"></i></a>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+
+
+
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="11" th:if="${page.totalPages}>1">
+                    <div class="ui middle aligned three column grid" >
+                        <div class="left aligned column">
+                            <a href="#" th:href="@{/admin/detail(page=${page.number}-1)}"  th:unless="${page.first}" class="ui tiny pink button">vorherige</a>
+                        </div>
+
+                        <div class="center aligned column">
+                            <div th:text="${page.number+1} + '/' + ${page.getTotalPages()}">1/1</div>
+                        </div>
+
+                        <div class="right aligned column">
+                            <a href="#" th:href="@{/admin/detail(page=${page.number}+1)}"  th:unless="${page.last}" class="ui tiny black button m-padded-tb-horizontal-small">nächste</a>
+                        </div>
+                    </div>
+                </th>
+
+            </tr>
+            </tfoot>
+        </table>
+
+        <a href="#" th:href="@{/admin/detail}" class="ui right floated m-padded-tb-horizontal-small black button">zurück</a>
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+<!--footer-->
+<footer th:replace="_fragments :: footer"></footer>
+
+
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<!--/*/</th:block>/*/-->
+
+<script>
+    $('.menu.toggle').click(function (){
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('.ui.dropdown').dropdown();
+
+    //close notification
+    $('.message .close')
+        .on('click', function () {
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
+</script>
+
+</body>
+</html>

@@ -4,6 +4,7 @@ import com.computacenter.exception.KontaktNotFoundException;
 import com.computacenter.pojo.Person;
 import com.computacenter.service.AbteilungService;
 import com.computacenter.service.PersonService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -34,6 +35,8 @@ public class PersonController {
     private AbteilungService abteilungService;
 
     @GetMapping("/detail")
+    @ApiOperation("Sort all contacts by first name, and list them by page. " +
+            "Store the result in model and then go to detail to render them.")
     public String list(@PageableDefault(size = 5, sort = {"vorname"}, direction = Sort.Direction.ASC) Pageable pageable,
                        Model model){
 
@@ -42,6 +45,7 @@ public class PersonController {
     }
 
     @GetMapping("/create")
+    @ApiOperation("store the list of department in session for rendering and go to create page.")
     public String toCreate(Model model, HttpSession session){
 
         session.setAttribute("abteilungList", abteilungService.listAbteilungen());
@@ -52,6 +56,8 @@ public class PersonController {
 
 
     @PostMapping("/detail")
+    @ApiOperation("If user input of creating a new contact is valid, and email address is not taken yet, " +
+            "then add the contact to database and go to detail page.")
     public String post(@Valid Person person, BindingResult result, RedirectAttributes attributes) {
 
         if (result.hasErrors()){
@@ -61,7 +67,7 @@ public class PersonController {
         Person oldPerson = personService.getByMailadresse(person.getMailadresse());
         if (oldPerson != null){
             System.out.println("Person already exists");
-            result.rejectValue("mailadresse", "mailadresseError", "Kontakt (mailadresse) existiert schon.");
+            result.rejectValue("mailadresse", "mailadresseError", "Kontakt (Mailadresse) existiert schon.");
             return CREATE;
         }
 
@@ -76,19 +82,21 @@ public class PersonController {
         if (p == null ) {
             attributes.addFlashAttribute("message", "Kontakt Aktualisieren ist fehlgeschalgen!");
         } else {
-            attributes.addFlashAttribute("message", "Kontakt erfolgreich aktualisiert!");
+            attributes.addFlashAttribute("message", "Kontakt erfolgreich eingefügt!");
         }
         return REDIRECT_DETAIL;
     }
 
 
     @GetMapping("/update/{id}")
+    @ApiOperation("If id exists, then find the right contact info and go to update page.")
     public String toUpdate(@PathVariable("id") Long id, Model model, HttpSession session){
-        Person p = personService.getPerson(id);
+        Person p = personService.getById(id);
         if (p == null){
-            throw new KontaktNotFoundException("Kontakt nicht gefunden!");
+            throw new KontaktNotFoundException("Kontakt  mit  id  " + id + "  nicht  gefunden!");
 
         }
+
         model.addAttribute("person", p);
         session.setAttribute("abteilungList", abteilungService.listAbteilungen());
 
@@ -97,7 +105,9 @@ public class PersonController {
 
 
     @PostMapping("/person/{id}")
-    public String update(@Valid Person person, @PathVariable("id") Long id, BindingResult result, RedirectAttributes attributes){
+    @ApiOperation("If the user input is valid, then update the contact info and redirect to detail page." +
+            "Otherwise go to error page")
+    public String update(@Valid Person person, BindingResult result, RedirectAttributes attributes, @PathVariable("id") Long id){
 
         if (result.hasErrors()){
             return UPDATE;
@@ -107,7 +117,7 @@ public class PersonController {
         Person oldPerson = personService.getByMailadresse(person.getMailadresse());
         if (oldPerson != null && !oldPerson.getId().equals(id)){
             System.out.println("Person already exists");
-            result.rejectValue("mailadresse", "mailadresseError", "Kontakt (mailadresse) existiert schon.");
+            result.rejectValue("mailadresse", "mailadresseError", "Kontakt (Mailadresse) existiert schon.");
             return UPDATE;
 
         }
@@ -124,7 +134,7 @@ public class PersonController {
         if (p == null ) {
             attributes.addFlashAttribute("message", "Kontakt Einfügen ist fehlgeschalgen!");
         } else {
-            attributes.addFlashAttribute("message", "Kontakt erfolgreich eingefügt!");
+            attributes.addFlashAttribute("message", "Kontakt erfolgreich aktualisiert!");
         }
         return REDIRECT_DETAIL;
 
@@ -132,13 +142,13 @@ public class PersonController {
 
 
     @GetMapping("/delete/{id}")
+    @ApiOperation("If id exists, then delete the contact. Otherwise go to error page.")
     public String delete(@PathVariable("id") Long id, RedirectAttributes attributes){
-        Person p = personService.getPerson(id);
+        Person p = personService.getById(id);
         if (p == null){
-            String s = "Kontakt nicht gefunden!";
-            attributes.addFlashAttribute("exception", s);
-            throw new KontaktNotFoundException(s);
+            throw new KontaktNotFoundException("Kontakt  mit  id  " + id + "  nicht  gefunden!");
         }
+
         personService.deletePerson(id);
         attributes.addFlashAttribute("message", "Kontakt erfolgreich gelöscht!");
         return REDIRECT_DETAIL;

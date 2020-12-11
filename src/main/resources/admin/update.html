@@ -17,8 +17,7 @@
 
 
 
-<br>
-<br>
+
 
 
 <!--body-->
@@ -26,40 +25,38 @@
 
     <div class="ui container">
 
-        <br>
-        <form method="post" action="#" class="ui form" th:object="${person}" th:action="@{/admin/person/{id}(id=${person.id})}">
+        <form method="post" action="#" class="ui form m-margin-t-big" th:object="${person}" th:action="@{/admin/person/{id}(id=${person.id})}">
 
 
             <div class="ui inverted segment m-padded-tb-big m-padded-tb-horizontal-large">
 
-                <h2 class="ui center aligned header">Kontakt aktualisieren</h2>
+                <h2 class="ui center aligned header" th:text="#{updatecontact}">Kontakt aktualisieren</h2>
                 <br>
                 <div class="ui inverted form" >
                     <div class="two required fields">
                         <div class="field">
-                            <label>Vorname</label>
-                            <input placeholder="Vorname" name="vorname" id="vn" th:value="*{vorname}" th:text="${person.getVorname()}" pattern="[a-zA-Z]*" type="text">
+                            <label th:text="#{detail.firstname}">Vorname</label>
+                            <input placeholder="Vorname" name="vorname" id="vn" th:value="*{vorname}" pattern="[a-zA-Z\u00C0-\u017F]*" type="text">
                         </div>
                         <div class="field">
-                            <label>Nachname</label>
-                            <input name="nachname" id="nn" placeholder="Nachname" th:value="*{nachname}" pattern="[a-zA-Z]*" type="text">
+                            <label th:text="#{detail.lastname}">Nachname</label>
+                            <input name="nachname" id="nn" placeholder="Nachname" th:value="*{nachname}" pattern="[a-zA-Z\u00C0-\u017F]*" type="text">
                         </div>
                     </div>
-                    <div class="field">
-                        <label>E-mail</label>
+                    <div class="required field">
+                        <label th:text="#{detail.email}">E-mail</label>
                         <input type="email" name="mailadresse" id="mail" th:value="*{mailadresse}" placeholder="Mailadresse">
                     </div>
 
 
                     <div class="two fields">
-                        <div class="field">
-                            <label>Telefonnummer</label>
+                        <div class="required field">
+                            <label th:text="#{detail.number}">Telefonnummer</label>
                             <input type="text" name="telefonnummer"  th:value="*{telefonnummer}" id="tn" placeholder="Telefonnummer" pattern="[0-9]*">
                         </div>
                         <div class="field">
-                            <label>Abteilung</label>
+                            <label th:text="#{detail.department}">Abteilung</label>
                             <div class="ui search selection dropdown">
-                                <!---->
                                 <input type="hidden" name="abteilung.id" th:value="*{abteilung}!=null ? *{abteilung.id} : null">
                                 <i class="dropdown icon"></i>
                                 <div class="ui middle text">Abteilung</div>
@@ -75,26 +72,46 @@
                     <div class="required field">
                         <div class="ui checkbox">
                             <input type="checkbox" id="agree" name="agree"  class="hidden" >
-                            <label for="agree">Ich stimme den AGB zu.</label>
+                            <label for="agree" th:text="#{create.agree}">Ich stimme den AGB zu.</label>
                         </div>
                     </div>
 
 
 
                     <div class="ui right aligned container">
-                        <button type="button" class="ui button m-padded-tb-horizontal-small" onclick="window.history.go(-1)">back</button>
-                        <button type="submit" class="ui pink button">aktualisieren</button>
+                        <button type="button" class="ui button m-padded-tb-horizontal-small" th:text="#{create.back}" onclick="window.history.go(-1)">zurück</button>
+                        <button type="submit" class="ui pink button" th:text="#{update.update}">aktualisieren</button>
 
                     </div>
 
                     <br>
-                    <!--<div class="ui submit button">Submit</div>-->
                 </div>
             </div>
 
-            <!--error message from js-->
+            <!--error message from js (front end)-->
             <div class="ui error message"></div>
 
+            <!--show error message from the back end validation-->
+            <div class="ui negative message" th:if="${#fields.hasErrors('vorname')}">
+                <i class="close icon"></i>
+                <div class="header">Error</div>
+                <p th:errors="*{vorname}">Invalid input.</p>
+            </div>
+            <div class="ui negative message" th:if="${#fields.hasErrors('nachname')}">
+                <i class="close icon"></i>
+                <div class="header">Error</div>
+                <p th:errors="*{nachname}">Invalid input.</p>
+            </div>
+            <div class="ui negative message" th:if="${#fields.hasErrors('mailadresse')}">
+                <i class="close icon"></i>
+                <div class="header">Error</div>
+                <p th:errors="*{mailadresse}">Invalid input.</p>
+            </div>
+            <div class="ui negative message" th:if="${#fields.hasErrors('telefonnummer')}">
+                <i class="close icon"></i>
+                <div class="header">Error</div>
+                <p th:errors="*{telefonnummer}">Invalid input.</p>
+            </div>
 
 
         </form>
@@ -102,9 +119,6 @@
 
 
 
-
-        <br>
-        <br>
 
 
 
@@ -144,6 +158,13 @@
                     prompt: 'Nachname: darf nicht leer sein.'
                 }]
             },
+            mailadresse: {
+                identifier: 'mailadresse',
+                rules: [{
+                    type: 'empty',
+                    prompt: 'Mailadresse: darf nicht leer sein.'
+                }]
+            },
             agree: {
                 identifier: 'agree',
                 rules: [{
@@ -153,6 +174,13 @@
             }
         }
     });
+    //close notification
+    $('.message .close')
+        .on('click', function () {
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
 </script>
 
 </body>
