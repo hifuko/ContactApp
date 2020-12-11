@@ -34,23 +34,23 @@
                     <div class="two required fields">
                         <div class="field">
                             <label th:text="#{detail.firstname}">Vorname</label>
-                            <input placeholder="Vorname" name="vorname" id="vn" th:value="*{vorname}" pattern="[a-zA-Z\u00C0-\u017F]*" type="text">
+                            <input placeholder="Vorname" th:placeholder="#{detail.firstname}" name="vorname" id="vn" th:value="*{vorname}" pattern="[a-zA-Z\u00C0-\u017F]*" type="text">
                         </div>
                         <div class="field">
                             <label th:text="#{detail.lastname}">Nachname</label>
-                            <input name="nachname" id="nn" placeholder="Nachname" th:value="*{nachname}" pattern="[a-zA-Z\u00C0-\u017F]*" type="text">
+                            <input name="nachname" id="nn" th:placeholder="#{detail.lastname}" placeholder="Nachname" th:value="*{nachname}" pattern="[a-zA-Z\u00C0-\u017F]*" type="text">
                         </div>
                     </div>
                     <div class="required field">
                         <label th:text="#{detail.email}">E-mail</label>
-                        <input type="email" name="mailadresse" id="mail" th:value="*{mailadresse}" placeholder="Mailadresse">
+                        <input type="email" th:placeholder="#{detail.email}" name="mailadresse" id="mail" th:value="*{mailadresse}" placeholder="Mailadresse">
                     </div>
 
 
                     <div class="two fields">
                         <div class="required field">
                             <label th:text="#{detail.number}">Telefonnummer</label>
-                            <input type="text" name="telefonnummer"  th:value="*{telefonnummer}" id="tn" placeholder="Telefonnummer" pattern="[0-9]*">
+                            <input type="text" th:placeholder="#{detail.number}" name="telefonnummer"  th:value="*{telefonnummer}" id="tn" placeholder="Telefonnummer" pattern="[0-9]*">
                         </div>
                         <div class="field">
                             <label th:text="#{detail.department}">Abteilung</label>
