@@ -77,7 +77,7 @@
                     <img src="../static/images/code.jpg" th:src="@{/images/code.jpg}" class="ui rounded centered image" style="width: 100px; padding-left: 2px" alt="">
                 </div>
                 <div class="four wide column">
-                    <h4 class="ui inverted header">Social Media</h4>
+                    <h4 class="ui inverted header" th:text="#{footer.socialMedia}">Social Media</h4>
                     <div class="ui inverted link list">
                         <a href="#" class="item"><i class="github icon"></i>github</a>
                         <a href="#" class="item"><i class="wechat icon"></i>wechat</a>
@@ -85,16 +85,16 @@
                     </div>
                 </div>
                 <div class="four wide column">
-                    <h4 class="ui inverted header">Mehr</h4>
+                    <h4 class="ui inverted header" th:text="#{footer.more}">Mehr</h4>
                     <div class="ui inverted link list">
-                        <a href="#" class="item">Standorte</a>
+                        <a href="#" class="item" th:text="#{footer.location}">Standorte</a>
                     </div>
 
 
                 </div>
                 <div class="four wide column">
-                    <h4 class="ui inverted header">Über uns</h4>
-                    <p>Wir sind eine Familie.</p>
+                    <h4 class="ui inverted header" th:text="#{footer.aboutus}">Über uns</h4>
+                    <p  th:text="#{footer.family}">Wir sind eine Familie.</p>
                 </div>
 
             </div>

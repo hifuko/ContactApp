@@ -31,8 +31,9 @@
         <h1 class="ui left aligned header m-font-medium" th:text="'Suchergebnisse für ' + ${query} + ':'" th:if="${query}!=null"></h1>
         <h1 class="ui left aligned header m-font-medium" th:text="'Suchergebnisse für ' + ${page.getContent().get(0).abteilung.name} + ':'" th:if="${query}==null"></h1>
 
-        <div th:text="${page.getTotalElements()} + '  Kontakt(e)'" class="ui header">5 Kontakte</div>
 
+        <span th:text="${page.getTotalElements()}" class="ui left aligned header pink m-font-medium ">5 </span>
+        <span class="ui header" th:text="#{detail.contacts}">Kontakt(e)</span>
 
         <table class="ui compact center aligned striped pink table m-margin-t-medium">
             <thead>
@@ -40,12 +41,12 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th>Vorname</th>
-                <th>Nachname</th>
-                <th>Mailadresse</th>
-                <th>Telefonnummer</th>
-                <th>Abteilung</th>
-                <th>Bearbeiten/Löschen</th>
+                <th th:text="#{detail.firstname}">Vorname</th>
+                <th th:text="#{detail.lastname}">Nachname</th>
+                <th th:text="#{detail.email}">Mailadresse</th>
+                <th th:text="#{detail.number}">Telefonnummer</th>
+                <th th:text="#{detail.department}">Abteilung</th>
+                <th th:text="#{detail.editAndDelete}">Bearbeiten/Löschen</th>
                 <th></th>
                 <th></th>
 
@@ -96,7 +97,7 @@
             </tfoot>
         </table>
 
-        <a href="#" th:href="@{/admin/detail}" class="ui right floated m-padded-lr-small black button">zurück</a>
+        <a href="#" th:href="@{/admin/detail}" th:text="#{create.back}" class="ui right floated m-padded-lr-small black button">zurück</a>
 
 
 
