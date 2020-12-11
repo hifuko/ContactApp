@@ -4,6 +4,7 @@ spring:
     url: jdbc:mysql:///computacenter?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
     username: root
     password: xiaonaimao
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -12,6 +13,7 @@ spring:
 logging:
   level:
     root: info
-    com.ivana: debug
+    com.computacenter: debug
   file:
-    path: log/blog-dev.log
+    path: log/blog-dev-local.log
+
