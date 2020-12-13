@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin")
 public class SearchController {
 
+    private static final String SEARCH = "admin/search";
+
+
     @Autowired
     private PersonService service;
 
@@ -25,7 +28,7 @@ public class SearchController {
         model.addAttribute("page", service.listPersons(query, pageable));
         //show query on the page
         model.addAttribute("query", query);
-        return "../admin/search";
+        return SEARCH;
     }
 
 
@@ -36,7 +39,7 @@ public class SearchController {
                          @PageableDefault(size = 20, sort = {"vorname"}, direction = Sort.Direction.ASC) Pageable pageable,
                          Model model){
         model.addAttribute("page", service.listPersons(ab_id, pageable));
-        return "../admin/search";
+        return SEARCH;
     }
 
 

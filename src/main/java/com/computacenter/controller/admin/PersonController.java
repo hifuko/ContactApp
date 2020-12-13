@@ -24,10 +24,10 @@ import java.util.NoSuchElementException;
 @RequestMapping("/admin")
 public class PersonController {
 
-    private static final String DETAIL = "../admin/detail";
-    private static final String CREATE = "../admin/create";
+    private static final String DETAIL = "admin/detail";
+    private static final String CREATE = "admin/create";
     private static final String REDIRECT_DETAIL = "redirect:/admin/detail";
-    private static final String UPDATE = "../admin/update";
+    private static final String UPDATE = "admin/update";
 
     @Autowired
     private PersonService personService;
