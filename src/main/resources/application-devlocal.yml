@@ -15,5 +15,5 @@ logging:
     root: info
     com.computacenter: debug
   file:
-    path: log/blog-dev-local.log
+    path: log/contact-dev-local.log
 

@@ -14,7 +14,7 @@ logging:
     root: warn
     com.computacenter: info
   file:
-    path: log/blog-pro.log
+    path: log/contact-pro.log
 
 server:
   port: 8082
