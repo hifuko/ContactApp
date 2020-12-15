@@ -1,14 +1,15 @@
-package com.computacenter.service;
+package com.computacenter.service.impl;
 
-import com.computacenter.pojo.Abteilung;
+import com.computacenter.entity.Abteilung;
 import com.computacenter.repository.AbteilungRepository;
+import com.computacenter.service.AbteilungService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class AbteilungServiceImpl implements AbteilungService{
+public class AbteilungServiceImpl implements AbteilungService {
 
     @Autowired
     private AbteilungRepository repository;

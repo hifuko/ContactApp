@@ -1,4 +1,4 @@
-package com.computacenter.pojo;
+package com.computacenter.entity;
 
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
@@ -35,7 +35,7 @@ public class Person {
     private String nachname;
 
     @Email(message = "Mailadresse nicht korrekt!")
-    @Pattern(regexp = "[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z0-9]{2,6}", message = "Mailadresse nicht korrekt!")
+    @Pattern(regexp = "[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*\\.[a-zA-Z0-9]{2,6}", message = "Mailadresse Pattern nicht korrekt!")
     @NotBlank(message = "Mailadresse darf nicht leer sein!")
     private String mailadresse;
 

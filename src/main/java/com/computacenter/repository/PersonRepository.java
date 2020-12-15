@@ -1,8 +1,7 @@
 package com.computacenter.repository;
 
 
-import com.computacenter.pojo.Person;
-import com.computacenter.pojo.User;
+import com.computacenter.entity.Person;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,6 +13,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     public Person getById(Long id);
 
+    //jpql(better than sql cuz it is more abstract)
     @Query("select p from Person p where p.nachname like ?1 or p.vorname like ?1 or p.mailadresse like ?1 " +
             "or p.abteilung.name like ?1 or p.telefonnummer like ?1")
     public Page<Person> findByQeury(String query, Pageable pageable);

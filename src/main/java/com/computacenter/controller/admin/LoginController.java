@@ -1,11 +1,10 @@
 package com.computacenter.controller.admin;
 
-import com.computacenter.pojo.User;
+import com.computacenter.entity.User;
 import com.computacenter.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,7 +61,7 @@ public class LoginController {
             //addFlashAttribute:
             //1. can pass any data type(not only primitive types or string)
             //2. after it is fetched, it will be cleared, suitable for feedback message of form
-            attributes.addFlashAttribute("message", "Username oder Password falsch.");
+            attributes.addFlashAttribute("message", "Benutzername oder Passwort falsch.");
             //here we can not use Model, cuz it can't send data when we use redirect
             return REDIRECT_ADMIN;
         }

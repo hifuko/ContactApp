@@ -1,9 +1,6 @@
 package com.computacenter.service;
 
-import com.computacenter.pojo.Abteilung;
-import com.computacenter.pojo.Person;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.computacenter.entity.Abteilung;
 
 import java.util.List;
 

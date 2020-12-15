@@ -1,7 +1,7 @@
 package com.computacenter.service;
 
 
-import com.computacenter.pojo.User;
+import com.computacenter.entity.User;
 
 public interface UserService {
 

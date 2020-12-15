@@ -1,7 +1,8 @@
-package com.computacenter.service;
+package com.computacenter.service.impl;
 
-import com.computacenter.pojo.Person;
+import com.computacenter.entity.Person;
 import com.computacenter.repository.PersonRepository;
+import com.computacenter.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +13,7 @@ import javax.transaction.Transactional;
 
 
 @Service
-public class PersonServiceImpl implements PersonService{
+public class PersonServiceImpl implements PersonService {
 
     @Autowired
     private PersonRepository repository;

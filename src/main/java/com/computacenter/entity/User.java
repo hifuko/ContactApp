@@ -1,4 +1,4 @@
-package com.computacenter.pojo;
+package com.computacenter.entity;
 
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;

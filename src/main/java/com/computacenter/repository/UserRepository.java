@@ -1,7 +1,7 @@
 package com.computacenter.repository;
 
 
-import com.computacenter.pojo.User;
+import com.computacenter.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 //<User, Long>: object, id

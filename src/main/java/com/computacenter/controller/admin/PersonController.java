@@ -1,7 +1,6 @@
 package com.computacenter.controller.admin;
 
-import com.computacenter.exception.KontaktNotFoundException;
-import com.computacenter.pojo.Person;
+import com.computacenter.entity.Person;
 import com.computacenter.service.AbteilungService;
 import com.computacenter.service.PersonService;
 import io.swagger.annotations.ApiOperation;
@@ -67,7 +66,7 @@ public class PersonController {
 
         Person oldPerson = personService.getByMailadresse(person.getMailadresse());
         if (oldPerson != null){
-            System.out.println("Person already exists");
+//            System.out.println("Person already exists");
             result.rejectValue("mailadresse", "mailadresseError", "Kontakt (Mailadresse) existiert schon.");
             return CREATE;
         }

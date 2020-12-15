@@ -1,6 +1,6 @@
 package com.computacenter.service;
 
-import com.computacenter.pojo.Person;
+import com.computacenter.entity.Person;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

@@ -1,4 +1,4 @@
-package com.computacenter.pojo;
+package com.computacenter.entity;
 
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
