@@ -50,5 +50,8 @@ username: admin, password: 123
 ![Screenshot from 2022-07-19 14-02-37](https://user-images.githubusercontent.com/45092816/179745665-30ebbf31-c187-458e-80ee-07ef65f596e5.png)
 ![Screenshot from 2022-07-19 13-48-27](https://user-images.githubusercontent.com/45092816/179745057-cfa52165-86b3-4706-b67f-e787709edc88.png)
 
+- Catch all exceptions and go to the error page with the error message
 
+![Screenshot from 2022-07-19 14-09-37](https://user-images.githubusercontent.com/45092816/179746962-96b89c95-f998-4f0d-9454-fb8fd94072cd.png)
 
+- If one tries to access /admin/** without being logged in, it goes to the login page.
