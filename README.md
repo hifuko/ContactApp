@@ -1,8 +1,9 @@
 # Contact App
 
-This is a web app that enables users to create, search, update and delete people's contacts. 
+This is a web app that enables users to create, display, search, update and delete people's contacts. 
 
-The project is deployed on Heroku with a remote databse:  https://contact-app-weijia.herokuapp.com
+The project was deployed on Heroku with a remote Heroku Postgres databse. 
+Unfortunately, as of November 28th, 2022, free Heroku Dynos, free Heroku Postgres, and free Heroku Data for Redis® plans are no longer available. 
 
 
 ![Screenshot from 2022-07-19 13-43-18](https://user-images.githubusercontent.com/45092816/179743755-1c574693-796e-497d-9942-2ae915c2d643.png)
